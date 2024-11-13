@@ -11,4 +11,3 @@ Ollakseen valmis, user storyn toteutuksen tulee olla
 - testattu (unittest, Robot)
 - testaus automatisoitu (unittest, Robot, pylint)
 - integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön (main branchissa)
-
