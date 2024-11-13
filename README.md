@@ -4,6 +4,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 
 - [Product backlog](https://github.com/users/jobatabs/projects/1/views/3)
 - [CI](https://github.com/jobatabs/textec/actions)
+- [Sprint burndown](https://docs.google.com/spreadsheets/d/1WLDSrKw92wT9KG-hiETiYCesm8fhF46Eo0MnLOWUtcI/edit?gid=0#gid=0)
 
 # Asennusohjeet
 
@@ -25,9 +26,9 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 # Definition of done
 
 Ollakseen valmis, user storyn toteutuksen tulee olla
-- analysoitu (hyväksymiskriteerit kirjattu)
+- analysoitu (hyväksymiskriteerit kirjattu Robot-testein)
 - suunniteltu (jaettu taskeihin)
 - ohjelmoitu (huom. autopep8)
-- testattu (unittest, Robot)
-- testaus automatisoitu (unittest, Robot, pylint)
+- testattu (unittest, Robot läpi)
+- testaus automatisoitu (CI passing)
 - integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön (main branchissa)
