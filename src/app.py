@@ -1,14 +1,16 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
-from repositories.todo_repository import get_todos, create_todo, set_done
+from repositories.todo_repository import get_todos, create_reference, set_done
 from config import app, test_env
 from util import validate_todo
 
 @app.route("/")
 def index():
-    todos = get_todos()
-    unfinished = len([todo for todo in todos if not todo.done])
-    return render_template("index.html", todos=todos, unfinished=unfinished) 
+    return render_template("index.html") 
+
+    # todos = get_todos()
+    # unfinished = len([todo for todo in todos if not todo.done])
+    # return render_template("index.html" , todos=todos, unfinished=unfinished) 
 
 @app.route("/new_todo")
 def new():
@@ -16,11 +18,14 @@ def new():
 
 @app.route("/create_todo", methods=["POST"])
 def todo_creation():
-    content = request.form.get("content")
+    author = request.form.get("author")
+    title = request.form.get("title")
+    journal = request.form.get("journal")
+    year = request.form.get("year")
 
     try:
-        validate_todo(content)
-        create_todo(content)
+        # validate_todo(content)
+        create_reference(author, title, journal, year)
         return redirect("/")
     except Exception as error:
         flash(str(error))
