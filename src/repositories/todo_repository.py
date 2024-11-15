@@ -1,13 +1,13 @@
 from config import db
 from sqlalchemy import text
 
-from entities.todo import Todo
+from entities.citation import Citation
 
-def get_todos():
-    # result = db.session.execute(text("SELECT id, content, done FROM todos"))
-    # todos = result.fetchall()
-    # return [Todo(todo[0], todo[1], todo[2]) for todo in todos] 
-    pass
+def get_citations():
+    result = db.session.execute(text("SELECT id, author, title, journal, year FROM citations"))
+    rows = result.fetchall()
+    citations_list = [Citation(row[0], row[1], row[2], row[3], row[4]) for row in rows]
+    return citations_list
 
 def set_done(todo_id):
     sql = text("UPDATE todos SET done = TRUE WHERE id = :id")

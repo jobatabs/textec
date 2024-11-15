@@ -1,4 +1,4 @@
-class Todo:
+class Citation:
     def __init__(self, id, author, title, journal, year):
         self.id = id
         self.author = author
@@ -7,5 +7,4 @@ class Todo:
         self.year = year
 
     def __str__(self):
-        is_done = "done" if self.done else "not done"
-        return f"{self.content}, {is_done}"
+        return f"{self.author}, {self.title}, {self.journal}, {self.year}"
