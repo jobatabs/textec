@@ -24,11 +24,12 @@ def todo_creation():
     year = request.form.get("year")
 
     try:
-        # validate_todo(content)
+        validate_todo(year)
         create_reference(author, title, journal, year)
+        flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
     except Exception as error:
-        flash(str(error))
+        flash(str(error), 'error')
         return  redirect("/new_todo")
 
 @app.route("/toggle_todo/<todo_id>", methods=["POST"])

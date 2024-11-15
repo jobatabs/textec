@@ -7,8 +7,17 @@ TexTec
 {% block body %}
 
 <h2>Welcome to TexTec!</h2>
-
-<div>
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+    {% if messages %}
+    <div class="alert alert-success alert-dismissable fade show" role="alert">
+      <ul>
+      {% for message in messages %}
+      <li>{{ message }} <a href="/">Close</a></li>
+      {% endfor %}
+      </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
   things still unfinished: {{ unfinished }}
 </div>
 
