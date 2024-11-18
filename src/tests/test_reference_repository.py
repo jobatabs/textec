@@ -1,6 +1,6 @@
 import unittest
 from app import app
-from db_helper import reset_db
+from db_helper import reset_db, setup_db
 
 
 class TestReferenceRoutes(unittest.TestCase):
@@ -9,6 +9,8 @@ class TestReferenceRoutes(unittest.TestCase):
         cls.app = app
         cls.app_context = app.app_context()
         cls.app_context.push()
+
+        setup_db()
 
     @classmethod
     def tearDownClass(cls):
