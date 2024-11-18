@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "webcntr"
+name = "textec"
 version = "0.1.0"
 description = ""
-authors = ["Matti Luukkainen <mluukkai@iki.fi>"]
+authors = ["Jonatan Noponen <2370315+jobatabs@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
