@@ -1,4 +1,4 @@
-class Citation:
+class Reference:
     def __init__(self, id, author, title, journal, year):
         self.id = id
         self.author = author
