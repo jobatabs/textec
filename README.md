@@ -8,7 +8,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 
 # Asennusohjeet
 
-1. ``git clone git@github:jobatabs/textec``
+1. ``git clone git@github.com:jobatabs/textec.git``
 2. ``cd textec``
 3. ``pip install poetry``
 4. ``poetry install``
