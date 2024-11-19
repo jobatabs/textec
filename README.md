@@ -24,7 +24,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 2. ``poetry run robot src/story_tests``
 
 ## Pylint check
-[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg?branch=mlenni-patch)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
 
 # Definition of done
 
