@@ -24,6 +24,33 @@ Open And Configure Browser
     END
     Open Browser  browser=${BROWSER}  options=${options}
 
-Reset Todos
+Reset References
     Go To  ${RESET_URL}
 
+Go To Main Page
+    Go To  ${HOME_URL}
+
+Set Author
+    [Arguments]  ${author}
+    Input Text  author  ${author}
+
+Set Title
+    [Arguments]  ${title}
+    Input Text  title  ${title}
+
+Set Journal
+    [Arguments]  ${journal}
+    Input Text  journal  ${journal}
+ 
+Set Year
+    [Arguments]  ${year}
+    Input Text  year  ${year}
+
+Submit New Reference
+    Click Button  Save
+
+Main Page Should Be Open
+    Page Should Contain  Welcome to TexTec!
+
+Add Reference Page Should Be Open
+    Title Should Be  Add reference
