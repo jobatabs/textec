@@ -1,7 +1,7 @@
 from config import db
 from sqlalchemy import text
 
-from entities.Reference import Reference
+from entities.reference import Reference
 
 
 def get_references():
@@ -13,7 +13,8 @@ def get_references():
     return references_list
 
 
-# def set_done(todo_id):
+def set_done(todo_id):
+    pass
 #   db.session.execute(sql, {"id": todo_id})
 #   db.session.commit()
 

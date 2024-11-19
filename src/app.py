@@ -1,8 +1,8 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
-from repositories.reference_repository import get_references, create_reference
+from repositories.reference_repository import get_references, create_reference, set_done
 from config import app, test_env
-from util import validate_reference
+from util import validate_reference, UserInputError
 
 
 @app.route("/")
@@ -11,13 +11,13 @@ def index():
     return render_template("index.html", todos=references)
 
 
-@app.route("/new_todo")
+@app.route("/new")
 def new():
-    return render_template("new_todo.html")
+    return render_template("new.html")
 
 
-@app.route("/create_todo", methods=["POST"])
-def todo_creation():
+@app.route("/create", methods=["POST"])
+def creation():
     author = request.form.get("author")
     title = request.form.get("title")
     journal = request.form.get("journal")
@@ -28,9 +28,9 @@ def todo_creation():
         create_reference(author, title, journal, year)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
-    except Exception as error:
+    except UserInputError as error:
         flash(str(error), 'error')
-        return redirect("/new_todo")
+        return redirect("/new")
 
 
 @app.route("/toggle_todo/<todo_id>", methods=["POST"])
