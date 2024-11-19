@@ -1,7 +1,7 @@
 from sqlalchemy import text
 from config import db, app
 
-TABLE_NAME = "references"
+TABLE_NAME = "reference_items"
 
 
 def table_exists(name):
@@ -9,7 +9,7 @@ def table_exists(name):
         "SELECT EXISTS ("
         "  SELECT 1"
         "  FROM information_schema.tables"
-        f" WHERE table_name = '{name}'"
+        f" WHERE TABLE_NAME = '{name}'"
         ")"
     )
 

@@ -22,13 +22,13 @@ TexTec
 </div>
 
 <ul>
-  {% for todo in todos %}
+  {% for reference in references %}
     <li style="display: flex">
       <div>
-        {{ todo }} 
+        {{ reference }} 
       </div>
-      {% if not todo.done %}
-        <form action="/toggle_todo/{{ todo.id }}" method="post" style="margin-left: 10px;">
+      {% if not reference.done %}
+        <form action="/toggle_reference/{{ reference.id }}" method="post" style="margin-left: 10px;">
           <button type="submit">mark as done</button>
         </form>
       {% endif %}

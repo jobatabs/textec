@@ -8,7 +8,7 @@ from util import validate_reference, UserInputError
 @app.route("/")
 def index():
     references = get_references()
-    return render_template("index.html", todos=references)
+    return render_template("index.html", references=references)
 
 
 @app.route("/new")
