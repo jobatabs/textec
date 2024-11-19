@@ -308,7 +308,7 @@ max-statements=50
 min-public-methods=1
 
 # Maximum number of positional arguments
-max-positional-arguments=5
+max-positional-arguments=7
 
 [EXCEPTIONS]
 
