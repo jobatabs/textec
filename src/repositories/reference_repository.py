@@ -14,7 +14,7 @@ def get_references():
 
 def set_done(id):
     pass
-#   db.session.execute(sql, {"id": id}) 
+#   db.session.execute(sql, {"id": id})
 #   db.session.commit()
 
 
