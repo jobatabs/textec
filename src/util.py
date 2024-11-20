@@ -6,8 +6,8 @@ def validate_reference(year):
 
     try:
         int(year)
-    except ValueError:
-        raise UserInputError("Adding was unsuccessful. Invalid year.")
+    except ValueError as exc:
+        raise UserInputError("Adding was unsuccessful. Invalid year.") from exc
 
     if int(year) < 0:
         raise UserInputError("Adding was unsuccessful. Invalid year.")

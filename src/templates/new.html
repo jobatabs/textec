@@ -8,13 +8,13 @@ Add reference
 
 <h2>Add a new reference</h2>
 
-<form action="/create_todo" method="post">
+<form action="/create" method="post">
   {% with errors = get_flashed_messages(category_filter=["error"]) %}
     {% if errors %}
       <div class="alert alert-danger alert-dismissable fade show" role="alert">
       <ul>
       {% for message in errors %}
-        <li>{{ message }} <a href="/new_todo">Close</a></li>
+        <li>{{ message }} <a href="/new">Close</a></li>
       {% endfor %}
       </ul>
       </div>

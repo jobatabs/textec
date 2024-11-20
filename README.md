@@ -23,6 +23,9 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 1. ``poetry run pytest src/tests``
 2. ``poetry run robot src/story_tests``
 
+## Pylint check
+[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg?branch=mlenni-patch)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+
 # Definition of done
 
 Ollakseen valmis, user storyn toteutuksen tulee olla

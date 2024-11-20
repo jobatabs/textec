@@ -22,7 +22,7 @@ class TestReferenceRoutes(unittest.TestCase):
 
     def test_create_reference_successful(self):
         response = self.client.post(
-            "/create_todo",
+            "/create",
             data={
                 "author": "Author A",
                 "title": "Title A",
@@ -43,7 +43,7 @@ class TestReferenceRoutes(unittest.TestCase):
 
     def test_create_reference_invalid_year(self):
         response = self.client.post(
-            "/create_todo",
+            "/create",
             data={
                 "author": "Author A",
                 "title": "Title A",
@@ -61,7 +61,7 @@ class TestReferenceRoutes(unittest.TestCase):
 
     def test_create_reference_negative_year(self):
         response = self.client.post(
-            "/create_todo",
+            "/create",
             data={
                 "author": "Author A",
                 "title": "Title A",

@@ -1,5 +1,6 @@
 class Reference:
     def __init__(self, id, author, title, journal, year):
+        __tablename__ = "reference_items"
         self.id = id
         self.author = author
         self.title = title
