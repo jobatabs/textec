@@ -45,12 +45,6 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install  
-      - name: Debug Environment
-        run: |
-          python --version
-          which python
-          poetry env info
-          poetry show
       - name: Analysing the code with pylint
         run: |
           poetry run pylint src/
