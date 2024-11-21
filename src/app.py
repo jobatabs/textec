@@ -3,6 +3,7 @@ from db_helper import reset_db
 from repositories.reference_repository import get_references, create_reference, set_done
 from config import app, test_env
 from util import validate_reference, UserInputError
+from bib_generator import create_bibfile
 
 
 @app.route("/")
