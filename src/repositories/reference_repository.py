@@ -12,10 +12,10 @@ def get_references():
     return references_list
 
 
-def set_done(id):
-    pass
-#   db.session.execute(sql, {"id": id})
-#   db.session.commit()
+def delete_reference(id):
+    sql = text("DELETE FROM reference_items WHERE id=:id")
+    db.session.execute(sql, {"id": id})
+    db.session.commit()
 
 
 def create_reference(author, title, journal, year):

@@ -28,8 +28,8 @@ TexTec
         {{ reference }} 
       </div>
       {% if not reference.done %}
-        <form action="/toggle_reference/{{ reference.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">mark as done</button>
+        <form action="/delete/{{ reference.id }}" method="post" style="margin-left: 10px;">
+          <button type="submit">Delete</button>
         </form>
       {% endif %}
     </li>

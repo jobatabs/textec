@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
-from repositories.reference_repository import get_references, create_reference, set_done
+from repositories.reference_repository import get_references, create_reference, delete_reference
 from config import app, test_env
 from util import validate_reference, UserInputError
 
@@ -33,9 +33,9 @@ def creation():
         return redirect("/new")
 
 
-@app.route("/toggle_todo/<todo_id>", methods=["POST"])
-def toggle_todo(todo_id):
-    set_done(todo_id)
+@app.route("/delete/<reference_id>", methods=["POST"])
+def delete(reference_id):
+    delete_reference(reference_id)
     return redirect("/")
 
 
