@@ -1,8 +1,10 @@
+import re
+
 class UserInputError(Exception):
     pass
 
 
-def validate_reference(year):
+def validate_reference(year, pp):
 
     try:
         int(year)
@@ -11,6 +13,12 @@ def validate_reference(year):
 
     if int(year) < 0:
         raise UserInputError("Adding was unsuccessful. Invalid year.")
+
+    if pp is not None:
+        if not re.match(r"^\d+-?\d*", pp):
+            raise UserInputError("Adding was unsuccessful. \
+                                 Invalid pages pertinent (should be of \
+                                 either format start-end or page).")
 
     # if len(content) < 5:
         # raise UserInputError("Todo content length must be greater than 4")
