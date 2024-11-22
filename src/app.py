@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
 from repositories.reference_repository import get_references, create_reference, set_done
 from config import app, test_env
@@ -38,6 +38,13 @@ def creation():
 def toggle_todo(todo_id):
     set_done(todo_id)
     return redirect("/")
+
+@app.route("/export_bibtex_file")
+def export_bibtex_file():
+    references = get_references()
+    create_bibfile(references)
+
+    return send_file("../references.bib", as_attachment=True, download_name="references.bib")
 
 
 # testausta varten oleva reitti

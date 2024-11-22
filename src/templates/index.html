@@ -38,5 +38,10 @@ TexTec
 <div>
   <a href="/new">Add a new reference </a>
 </div>
+{% if references %}
+  <a href="/export_bibtex_file">
+    <button>Export BibTeX-file</button>
+  </a>
+{% endif %}
 
 {% endblock %}
