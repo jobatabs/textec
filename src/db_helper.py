@@ -41,7 +41,8 @@ def setup_db():
         "  author TEXT NOT NULL,"
         "  title TEXT NOT NULL,"
         "  journal TEXT NOT NULL,"
-        "  year INTEGER NOT NULL"
+        "  year INTEGER NOT NULL,"
+        "  pp TEXT"
         ")"
     )
 
