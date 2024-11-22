@@ -22,10 +22,11 @@ def creation():
     title = request.form.get("title")
     journal = request.form.get("journal")
     year = request.form.get("year")
+    pp = request.form.get("pp") if request.form.get("pp") != "" else None
 
     try:
         validate_reference(year)
-        create_reference(author, title, journal, year)
+        create_reference(author, title, journal, year, pp)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
     except UserInputError as error:
