@@ -24,7 +24,7 @@ def generate_tag(ref: Reference):
     return tag
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     # kovakoodattu lista paikallista testausta varten
     reference_stub = [
         Reference(id=0, author="mlenni", title="test_title1", journal="my_journal", year=2024),

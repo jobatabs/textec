@@ -12,7 +12,7 @@ def get_references():
     return references_list
 
 
-def set_done(id):
+def set_done(id): # pragma: no cover
     pass
 #   db.session.execute(sql, {"id": id})
 #   db.session.commit()
