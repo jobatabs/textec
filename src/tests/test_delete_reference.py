@@ -1,6 +1,6 @@
-from sqlalchemy.exc import SQLAlchemyError
-from unittest.mock import patch
 import unittest
+from unittest.mock import patch
+from sqlalchemy.exc import SQLAlchemyError
 from app import app
 from db_helper import reset_db, setup_db
 
