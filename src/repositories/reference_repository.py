@@ -30,3 +30,11 @@ def create_reference(author, title, journal, year):
         "year": year
     })
     db.session.commit()
+
+
+def get_title(id):
+    sql = text("SELECT title FROM reference_items WHERE id = :id")
+    result = db.session.execute(sql, {"id": id}).fetchone()
+    if result:
+        return result[0]
+    return None

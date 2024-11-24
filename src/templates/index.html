@@ -18,6 +18,19 @@ TexTec
       </div>
     {% endif %}
   {% endwith %}
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+      <ul>
+      {% for message in errors %}
+      <li>{{ message }} <a href="/">Close</a></li>
+      {% endfor %}
+      </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
   things still unfinished: {{ unfinished }}
 </div>
 
