@@ -42,5 +42,5 @@ def create_reference(author, title, journal, year, pp=None):
             "journal": journal,
             "year": year
         })
-    
+
     db.session.commit()
