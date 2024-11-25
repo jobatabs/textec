@@ -39,6 +39,7 @@ def toggle_todo(todo_id):
     set_done(todo_id)
     return redirect("/")
 
+
 @app.route("/export_bibtex_file")
 def export_bibtex_file():
     references = get_references()

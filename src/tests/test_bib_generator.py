@@ -34,9 +34,9 @@ class TestReferenceRoutes(unittest.TestCase):
             follow_redirects=True
         )
 
-
     def test_generate_bibfile(self):
-        response = self.client.get("/export_bibtex_file", follow_redirects=True)
+        response = self.client.get(
+            "/export_bibtex_file", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
         with open("references.bib", "r") as f:
@@ -50,7 +50,7 @@ class TestReferenceRoutes(unittest.TestCase):
             '  year     = 2021\n'
             '}\n\n'
         )
-        self.assertEqual(generated_bib, expected_bib_file)       
+        self.assertEqual(generated_bib, expected_bib_file)
 
 
 if __name__ == "__main__":
