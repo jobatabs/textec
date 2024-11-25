@@ -8,9 +8,9 @@ class Reference:
         self.year = year
         self.type = type
         self.pp = pp
-        
+
     def __str__(self):
         attributes = [
-            f"{attr}={value}" for attr, value in vars(self).items() if value is not None
+            f"{value}" for attr, value in vars(self).items() if value is not None
         ]
         return ", ".join(attributes)
