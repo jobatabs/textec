@@ -1,6 +1,9 @@
 from flask import redirect, render_template, request, jsonify, flash
+from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
-from repositories.reference_repository import get_references, create_reference, set_done
+from repositories.reference_repository import (
+    get_references, create_reference, delete_reference, get_title
+)
 from config import app, test_env
 from util import validate_reference, UserInputError
 
@@ -22,10 +25,11 @@ def creation():
     title = request.form.get("title")
     journal = request.form.get("journal")
     year = request.form.get("year")
+    pp = request.form.get("pp") if request.form.get("pp") != "" else None
 
     try:
-        validate_reference(author, title, journal, year)
-        create_reference(author, title, journal, year)
+        validate_reference(author, title, journal, year, pp)
+        create_reference(author, title, journal, year, pp)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
     except UserInputError as error:
@@ -33,9 +37,23 @@ def creation():
         return redirect("/new")
 
 
-@app.route("/toggle_todo/<todo_id>", methods=["POST"])
-def toggle_todo(todo_id):
-    set_done(todo_id)
+@app.route("/delete/<reference_id>", methods=["POST"])
+def delete(reference_id):
+    try:
+        title = get_title(reference_id)
+        if title:
+            delete_reference(reference_id)
+            flash(f"Successfully deleted reference {title}.", "success")
+        else:
+            flash("The reference could not be deleted.", "error")
+    except SQLAlchemyError as e:
+        flash("The reference could not be deleted.", "error")
+    return redirect("/")
+
+
+@app.route("/delete/<reference_id>", methods=["GET"])
+def handle_get_delete(reference_id):
+    flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
 
 

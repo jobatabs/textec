@@ -1,8 +1,11 @@
+import re
+
+
 class UserInputError(Exception):
     pass
 
 
-def validate_reference(author, title, journal, year):
+def validate_reference(author, title, journal, year, pp):
     if not all([author, title, journal, year]):
         raise UserInputError(
             "Adding was unsuccessful. All required fields need to be filled.")
@@ -14,6 +17,12 @@ def validate_reference(author, title, journal, year):
 
     if int(year) < 0:
         raise UserInputError("Adding was unsuccessful. Invalid year.")
+
+    if pp is not None:
+        if not re.match(r"^\d+-?\d*", pp):
+            raise UserInputError(
+                "Adding was unsuccessful. " +
+                "Invalid pages pertinent (should be of either format start-end or page).")
 
     # if len(content) < 5:
         # raise UserInputError("Todo content length must be greater than 4")
