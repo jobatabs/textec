@@ -8,7 +8,7 @@ def get_references():
         text("SELECT id, author, title, journal, year, pp FROM reference_items"))
     rows = result.fetchall()
     references_list = [
-        Reference(row[0], row[1], row[2], row[3], row[4], row[5]) for row in rows]
+        Reference(row[0], row[1], row[2], row[3], row[4], "Article", row[5]) for row in rows]
     return references_list
 
 
