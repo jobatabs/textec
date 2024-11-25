@@ -28,7 +28,7 @@ def creation():
     pp = request.form.get("pp") if request.form.get("pp") != "" else None
 
     try:
-        validate_reference(year, pp)
+        validate_reference(author, title, journal, year, pp)
         create_reference(author, title, journal, year, pp)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
