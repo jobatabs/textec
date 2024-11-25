@@ -40,7 +40,7 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertIn(b"Title A", response.data)
         self.assertIn(b"Journal A", response.data)
         self.assertIn(b"2021", response.data)
-    
+
     def test_create_reference_with_pp_successful(self):
         response = self.client.post(
             "/create",
@@ -81,7 +81,7 @@ class TestReferenceRoutes(unittest.TestCase):
 
         response = self.client.get("/")
         self.assertNotIn(b"Author A", response.data)
-    
+
     def test_create_reference_invalid_pp(self):
         response = self.client.post(
             "/create",
@@ -96,7 +96,8 @@ class TestReferenceRoutes(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Adding was unsuccessful. Invalid pages pertinent", response.data)
+        self.assertIn(
+            b"Adding was unsuccessful. Invalid pages pertinent", response.data)
 
         response = self.client.get("/")
         self.assertNotIn(b"Author A", response.data)
