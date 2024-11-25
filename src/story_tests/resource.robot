@@ -16,6 +16,9 @@ Open And Configure Browser
     ELSE IF  $BROWSER == 'firefox'
         ${options}  Evaluate  sys.modules['selenium.webdriver'].FirefoxOptions()  sys
     END
+    ${prefs}  Create Dictionary
+    ...  download.default_directory=.
+    Call Method    ${options}  add_experimental_option  prefs  ${prefs}
     IF  $HEADLESS == 'true'
         Set Selenium Speed  0
         Call Method  ${options}  add_argument  --headless
