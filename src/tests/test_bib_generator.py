@@ -43,7 +43,7 @@ class TestReferenceRoutes(unittest.TestCase):
             generated_bib = f.read()
 
         expected_bib_file = (
-            '@Misc{Tit2021,\n'
+            '@Article{Tit2021,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
             '  journal  = "Journal A",\n'
