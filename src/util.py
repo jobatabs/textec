@@ -2,7 +2,9 @@ class UserInputError(Exception):
     pass
 
 
-def validate_reference(year):
+def validate_reference(author, title, journal, year):
+    if not all([author, title, journal, year]):
+        raise UserInputError("Adding was unsuccessful. All required fields need to be filled.")
 
     try:
         int(year)

@@ -24,7 +24,7 @@ def creation():
     year = request.form.get("year")
 
     try:
-        validate_reference(year)
+        validate_reference(author, title, journal, year)
         create_reference(author, title, journal, year)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
