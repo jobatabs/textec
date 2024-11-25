@@ -12,10 +12,10 @@ def get_references():
     return references_list
 
 
-def set_done(id):
-    pass
-#   db.session.execute(sql, {"id": id})
-#   db.session.commit()
+def delete_reference(id):
+    sql = text("DELETE FROM reference_items WHERE id=:id")
+    db.session.execute(sql, {"id": id})
+    db.session.commit()
 
 
 def create_reference(author, title, journal, year):
@@ -30,3 +30,11 @@ def create_reference(author, title, journal, year):
         "year": year
     })
     db.session.commit()
+
+
+def get_title(id):
+    sql = text("SELECT title FROM reference_items WHERE id = :id")
+    result = db.session.execute(sql, {"id": id}).fetchone()
+    if result:
+        return result[0]
+    return None
