@@ -1,5 +1,5 @@
 class Reference:
-    def __init__(self, id, author, title, journal, year, type="Article"):
+    def __init__(self, id: int, author, title, journal, year, type="Article", pp=None):
         __tablename__ = "reference_items"
         self.id = id
         self.author = author
@@ -7,6 +7,10 @@ class Reference:
         self.journal = journal
         self.year = year
         self.type = type
-
+        self.pp = pp
+        
     def __str__(self):
-        return f"{self.author}, {self.title}, {self.journal}, {self.year}"
+        attributes = [
+            f"{attr}={value}" for attr, value in vars(self).items() if value is not None
+        ]
+        return ", ".join(attributes)

@@ -47,7 +47,7 @@ class TestReferenceRoutes(unittest.TestCase):
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
             '  journal  = "Journal A",\n'
-            '  year     = 2021\n'
+            '  year     = "2021"\n'
             '}\n\n'
         )
         self.assertEqual(generated_bib, expected_bib_file)
