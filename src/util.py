@@ -17,9 +17,9 @@ def validate_reference(year, pp):
 
     if pp is not None:
         if not re.match(r"^\d+-?\d*", pp):
-            raise UserInputError("Adding was unsuccessful. \
-                                 Invalid pages pertinent (should be of \
-                                 either format start-end or page).")
+            raise UserInputError(\
+                "Adding was unsuccessful. " + \
+                    "Invalid pages pertinent (should be of either format start-end or page).")
 
     # if len(content) < 5:
         # raise UserInputError("Todo content length must be greater than 4")
