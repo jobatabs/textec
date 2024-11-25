@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
 from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
 from repositories.reference_repository import (
@@ -6,6 +6,7 @@ from repositories.reference_repository import (
 )
 from config import app, test_env
 from util import validate_reference, UserInputError
+from bib_generator import create_bibfile
 
 
 @app.route("/")
@@ -55,6 +56,14 @@ def delete(reference_id):
 def handle_get_delete(reference_id):
     flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
+
+
+@app.route("/export_bibtex_file")
+def export_bibtex_file():
+    references = get_references()
+    create_bibfile(references)
+
+    return send_file("../references.bib", as_attachment=True, download_name="references.bib")
 
 
 # testausta varten oleva reitti
