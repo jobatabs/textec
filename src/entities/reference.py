@@ -10,7 +10,6 @@ class Reference:
         self.pp = pp
 
     def __str__(self):
-        attributes = [
-            f"{value}" for attr, value in vars(self).items() if value is not None
-        ]
-        return ", ".join(attributes)
+        return f"{self.author}, {self.title}, {self.journal} (pp. {self.pp}), {self.year}" \
+            if self.pp is not None \
+            else f"{self.author}, {self.title}, {self.journal}, {self.year}"

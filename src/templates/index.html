@@ -18,6 +18,21 @@ TexTec
       </div>
     {% endif %}
   {% endwith %}
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+      <ul>
+      {% for message in errors %}
+      <li>{{ message }} <a href="/">Close</a></li>
+      {% endfor %}
+      </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  things still unfinished: {{ unfinished }}
+
 </div>
 
 <ul>
@@ -27,8 +42,8 @@ TexTec
         {{ reference }} 
       </div>
       {% if not reference.done %}
-        <form action="/toggle_reference/{{ reference.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">mark as done</button>
+        <form action="/delete/{{ reference.id }}" method="post" style="margin-left: 10px;">
+          <button type="submit">Delete</button>
         </form>
       {% endif %}
     </li>

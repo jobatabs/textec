@@ -49,6 +49,10 @@ Set Year
     [Arguments]  ${year}
     Input Text  year  ${year}
 
+Set Pages Pertinent
+    [Arguments]  ${pp}
+    Input Text  pp  ${pp}
+
 Submit New Reference
     Click Button  Save
 
