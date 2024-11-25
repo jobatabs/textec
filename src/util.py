@@ -4,7 +4,8 @@ class UserInputError(Exception):
 
 def validate_reference(author, title, journal, year):
     if not all([author, title, journal, year]):
-        raise UserInputError("Adding was unsuccessful. All required fields need to be filled.")
+        raise UserInputError(
+            "Adding was unsuccessful. All required fields need to be filled.")
 
     try:
         int(year)

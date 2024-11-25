@@ -78,12 +78,14 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertNotIn(b"Author A", response.data)
 
     def test_create_empty_reference(self):
-        response = self.client.post("/create", 
-                            data={},
-                            follow_redirects=True)
-        
+        response = self.client.post("/create",
+                                    data={},
+                                    follow_redirects=True)
+
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Adding was unsuccessful. All required fields need to be filled.", response.data)
+        self.assertIn(
+            b"Adding was unsuccessful. All required fields need to be filled.", response.data)
+
 
 if __name__ == "__main__":
     unittest.main()
