@@ -2,6 +2,7 @@
 [![CI](https://github.com/jobatabs/textec/actions/workflows/ci.yaml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/ci.yaml)
 [![CodeQL](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql)
 [![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+[![codecov](https://codecov.io/gh/jobatabs/textec/graph/badge.svg?token=45NHI95DUL)](https://codecov.io/gh/jobatabs/textec)
 
 Miniprojekti kurssille TKT20006 Ohjelmistotekniikka
 https://ohjelmistotuotanto-hy.github.io/speksi/
