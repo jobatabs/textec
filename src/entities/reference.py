@@ -1,12 +1,12 @@
 class Reference:
-    def __init__(self, id: int, author, title, journal, year, type="Article", pp=None):
-        __tablename__ = "reference_items"
-        self.id = id
+    def __init__(self, _id: int, author, title, journal, year, _type="Article", pp=None):
+        # __tablename__ = "reference_items"
+        self.id = _id
         self.author = author
         self.title = title
         self.journal = journal
         self.year = year
-        self.type = type
+        self.type = _type
         self.pp = pp
 
     def __str__(self):

@@ -278,7 +278,7 @@ exclude-too-few-public-methods=
 ignored-parents=
 
 # Maximum number of arguments for function / method.
-max-args=7
+max-args=10
 
 # Maximum number of attributes for a class (see R0902).
 max-attributes=7
@@ -308,7 +308,7 @@ max-statements=50
 min-public-methods=1
 
 # Maximum number of positional arguments
-max-positional-arguments=7
+max-positional-arguments=10
 
 [EXCEPTIONS]
 
@@ -416,20 +416,9 @@ confidence=HIGH,
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
-disable=raw-checker-failed,
-        bad-inline-option,
-        locally-disabled,
-        file-ignored,
-        suppressed-message,
-        useless-suppression,
-        deprecated-pragma,
-        use-symbolic-message-instead,
-        missing-module-docstring,
+disable=missing-module-docstring,
         missing-function-docstring,
-        missing-class-docstring,
-        unused-variable,
-        unused-argument,
-        redefined-builtin
+        missing-class-docstring
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

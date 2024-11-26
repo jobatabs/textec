@@ -2,6 +2,7 @@ import unittest
 from app import app
 from db_helper import reset_db, setup_db
 import os
+from bib_generator import create_bibfile
 
 
 class TestReferenceRoutes(unittest.TestCase):
@@ -33,6 +34,16 @@ class TestReferenceRoutes(unittest.TestCase):
             },
             follow_redirects=True
         )
+
+    def test_empty_argument(self):
+        create_bibfile()
+
+        with open("references.bib", "r") as f:
+            generated_bib = f.read()
+
+        expected_bib_file = ""
+        self.assertEqual(generated_bib, expected_bib_file)
+
 
     def test_generate_bibfile(self):
         response = self.client.get(
