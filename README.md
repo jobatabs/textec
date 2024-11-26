@@ -1,10 +1,15 @@
 # textec
+[![CI](https://github.com/jobatabs/textec/actions/workflows/ci.yaml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/ci.yaml)
+[![CodeQL](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql)
+[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+[![codecov](https://codecov.io/gh/jobatabs/textec/graph/badge.svg?token=45NHI95DUL)](https://codecov.io/gh/jobatabs/textec)
+
 Miniprojekti kurssille TKT20006 Ohjelmistotekniikka
 https://ohjelmistotuotanto-hy.github.io/speksi/
 
 - [Product backlog](https://github.com/users/jobatabs/projects/1/views/3)
 - [CI](https://github.com/jobatabs/textec/actions)
-- [Sprint burndown](https://docs.google.com/spreadsheets/d/1WLDSrKw92wT9KG-hiETiYCesm8fhF46Eo0MnLOWUtcI/edit?gid=0#gid=0)
+- [Sprint backlog](https://docs.google.com/spreadsheets/d/1WLDSrKw92wT9KG-hiETiYCesm8fhF46Eo0MnLOWUtcI/edit?gid=0#gid=0)
 
 # Asennusohjeet
 
@@ -12,6 +17,16 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 2. ``cd textec``
 3. ``pip install poetry``
 4. ``poetry install``
+
+# .env tiedoston luominen
+
+Sovellus käyttää PostgreSQL-tietokantaa, ja sen käynnistämiseksi tarvitaan `.env`-tiedosto, joka sisältää seuraavat ympäristömuuttujat: 
+
+```env 
+DATABASE_URL=postgresql://xxx
+TEST_ENV=true
+SECRET_KEY=satunnainen_merkkijono
+```
 
 # Sovelluksen käynnistäminen
 
@@ -22,9 +37,6 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 
 1. ``poetry run pytest src/tests``
 2. ``poetry run robot src/story_tests``
-
-## Pylint check
-[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg?branch=mlenni-patch)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
 
 # Definition of done
 
