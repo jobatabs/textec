@@ -1,8 +1,12 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
+from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
-from repositories.reference_repository import get_references, create_reference, set_done
+from repositories.reference_repository import (
+    get_references, create_reference, delete_reference, get_title
+)
 from config import app, test_env
 from util import validate_reference, UserInputError
+from bib_generator import create_bibfile
 
 
 @app.route("/")
@@ -22,10 +26,11 @@ def creation():
     title = request.form.get("title")
     journal = request.form.get("journal")
     year = request.form.get("year")
+    pp = request.form.get("pp") if request.form.get("pp") != "" else None
 
     try:
-        validate_reference(year)
-        create_reference(author, title, journal, year)
+        validate_reference(author, title, journal, year, pp)
+        create_reference(author, title, journal, year, pp)
         flash(f"Successfully added reference {title}.", 'success')
         return redirect("/")
     except UserInputError as error:
@@ -33,10 +38,32 @@ def creation():
         return redirect("/new")
 
 
-@app.route("/toggle_todo/<todo_id>", methods=["POST"])
-def toggle_todo(todo_id):
-    set_done(todo_id)
+@app.route("/delete/<reference_id>", methods=["POST"])
+def delete(reference_id):
+    try:
+        title = get_title(reference_id)
+        if title:
+            delete_reference(reference_id)
+            flash(f"Successfully deleted reference {title}.", "success")
+        else:
+            flash("The reference could not be deleted.", "error")
+    except SQLAlchemyError as e:
+        flash("The reference could not be deleted.", "error")
     return redirect("/")
+
+
+@app.route("/delete/<reference_id>", methods=["GET"])
+def handle_get_delete(reference_id):
+    flash("GET requests are not allowed for deletion.", "error")
+    return redirect("/")
+
+
+@app.route("/export_bibtex_file")
+def export_bibtex_file():
+    references = get_references()
+    create_bibfile(references)
+
+    return send_file("../references.bib", as_attachment=True, download_name="references.bib")
 
 
 # testausta varten oleva reitti

@@ -5,7 +5,7 @@ Suite Teardown   Close Browser
 Test Setup       Reset References
 
 *** Test Cases ***
-Adding a valid reference
+Adding a valid reference without optional field
     Go To Main Page
     Click Link  Add a new reference
     Set Author  Allan Collins and John Seely Brown and Ann Holum
@@ -13,36 +13,29 @@ Adding a valid reference
     Set Journal  American Educator
     Set Year  1991
     Submit New Reference
-    Adding A Valid Reference Should Succeed With Message  Successfully added reference Cognitive apprenticeship: making thinking visible.
-
-Adding a reference with invalid year
     Go To Main Page
-    Click Link  Add a new reference
-    Set Author  Allan Collins and John Seely Brown and Ann Holum
-    Set Title  Cognitive apprenticeship: making thinking visible
-    Set Journal  American Educator
-    Set Year  nineteen ninety-one
-    Submit New Reference
-    Adding An Invalid Reference Should Fail With Message  Adding was unsuccessful. Invalid year.
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 1991
 
-Adding a reference with invalid pages pertinent
+Adding a reference with optional field (multiple pages pertinent)
     Go To Main Page
     Click Link  Add a new reference
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator
     Set Year  1991
-    Set Pages Pertinent    kaksi
+    Set Pages Pertinent  213-250
     Submit New Reference
-    Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
+    Go To Main Page
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator (pp. 213-250), 1991
 
-*** Keywords ***
-Adding A Valid Reference Should Succeed With Message
-    [Arguments]  ${message}
-    Main Page Should Be Open
-    Page Should Contain  ${message}
-
-Adding An Invalid Reference Should Fail With Message
-    [Arguments]  ${message}
-    Add Reference Page Should Be Open
-    Page Should Contain  ${message}
+Adding a reference with optional field (single page pertinent)
+    Go To Main Page
+    Click Link  Add a new reference
+    Set Author  Allan Collins and John Seely Brown and Ann Holum
+    Set Title  Cognitive apprenticeship: making thinking visible
+    Set Journal  American Educator
+    Set Year  1991
+    Set Pages Pertinent  213
+    Submit New Reference
+    Go To Main Page
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator (pp. 213), 1991

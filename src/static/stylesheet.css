@@ -1,0 +1,10 @@
+.required::after {
+    content: ' *';
+    color: firebrick;
+}
+form {
+    margin-left: 15px;
+}
+input {
+    margin-left: 20px;
+}
