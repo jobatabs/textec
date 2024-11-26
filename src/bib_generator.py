@@ -2,9 +2,7 @@ from entities.reference import Reference
 
 
 # tähän pitäis voida laittaa suoraan get_references()
-def create_bibfile(list_of_references: list[Reference] = [
-    Reference(id=-1, author=None, title=None, journal=None, year=None)
-]):
+def create_bibfile(list_of_references: list[Reference] = []):
 
     reference_list = list_of_references  # vähän turha, mutta selkeempi
 
