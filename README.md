@@ -1,4 +1,8 @@
 # textec
+[![CI](https://github.com/jobatabs/textec/actions/workflows/ci.yaml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/ci.yaml)
+[![CodeQL](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/github-code-scanning/codeql)
+[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+
 Miniprojekti kurssille TKT20006 Ohjelmistotekniikka
 https://ohjelmistotuotanto-hy.github.io/speksi/
 
@@ -32,10 +36,6 @@ SECRET_KEY=satunnainen_merkkijono
 
 1. ``poetry run pytest src/tests``
 2. ``poetry run robot src/story_tests``
-
-## Pylint ja CI check
-[![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg?branch=mlenni-patch)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
-[![GHA workflow badge](https://github.com/jobatabs/textec/workflows/CI/badge.svg)](https://github.comjobatabs/textec/actions)
 
 # Definition of done
 
