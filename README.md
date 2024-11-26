@@ -13,6 +13,16 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 3. ``pip install poetry``
 4. ``poetry install``
 
+# .env tiedoston luominen
+
+Sovellus käyttää PostgreSQL-tietokantaa, ja sen käynnistämiseksi tarvitaan `.env`-tiedosto, joka sisältää seuraavat ympäristömuuttujat: 
+
+```env 
+DATABASE_URL=postgresql://xxx
+TEST_ENV=true
+SECRET_KEY=satunnainen_merkkijono
+```
+
 # Sovelluksen käynnistäminen
 
 1. ``poetry run python3 src/db_helper.py``
@@ -23,8 +33,9 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 1. ``poetry run pytest src/tests``
 2. ``poetry run robot src/story_tests``
 
-## Pylint check
+## Pylint ja CI check
 [![Pylint](https://github.com/jobatabs/textec/actions/workflows/pylint.yml/badge.svg?branch=mlenni-patch)](https://github.com/jobatabs/textec/actions/workflows/pylint.yml)
+[![GHA workflow badge](https://github.com/jobatabs/textec/workflows/CI/badge.svg)](https://github.comjobatabs/textec/actions)
 
 # Definition of done
 
