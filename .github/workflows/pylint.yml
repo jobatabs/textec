@@ -9,7 +9,7 @@ env:
 
 on:
   push:
-    branches: [main, pylint_cleanup]
+    branches: [main]
   pull_request:
     branches: [main]
 
