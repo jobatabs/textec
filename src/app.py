@@ -47,13 +47,13 @@ def delete(reference_id):
             flash(f"Successfully deleted reference {title}.", "success")
         else:
             flash("The reference could not be deleted.", "error")
-    except SQLAlchemyError as e:
+    except SQLAlchemyError:
         flash("The reference could not be deleted.", "error")
     return redirect("/")
 
 
 @app.route("/delete/<reference_id>", methods=["GET"])
-def handle_get_delete(reference_id):
+def handle_get_delete(reference_id): # pylint: disable=unused-argument
     flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
 
