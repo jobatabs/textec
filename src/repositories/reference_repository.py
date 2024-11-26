@@ -17,7 +17,7 @@ def delete_reference(id):
     db.session.execute(sql, {"id": id})
     db.session.commit()
 
-    
+
 def create_reference(author, title, journal, year, pp=None):
     if pp is not None:
         sql = text(

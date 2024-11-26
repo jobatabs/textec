@@ -1,23 +1,24 @@
-from repositories.reference_repository import get_references
 from entities.reference import Reference
 
 
 # tähän pitäis voida laittaa suoraan get_references()
-def create_bibfile(list_of_references: list[Reference] = []):
+def create_bibfile(list_of_references: list[Reference] = [
+    Reference(id=-1, author=None, title=None, journal=None, year=None)
+]):
 
     reference_list = list_of_references  # vähän turha, mutta selkeempi
 
-    with open("references.bib", "w") as f:
+    with open("references.bib", "w", encoding="utf-8") as f:
         for reference in reference_list:
             tag = generate_tag(reference)
             # muista varmistaa uniikki tagi!
             f.write(f"@{reference.type}{{{tag},\n")
-            
+
             attributes = []
             for attr, value in vars(reference).items():
-                if attr not in ["id", "type"] and value is not None:  
+                if attr not in ["id", "type"] and value is not None:
                     attributes.append(f'  {attr.ljust(9)}= "{value}"')
-            
+
             f.write(",\n".join(attributes) + "\n" + "}\n\n")
 
 
