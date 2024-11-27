@@ -19,7 +19,7 @@ def validate_reference(author, title, journal, year, pp):
         raise UserInputError("Adding was unsuccessful. Invalid year.")
 
     if pp is not None:
-        if not re.match(r"^\d+-?\d*", pp):
+        if not re.match(r"^\d+-?\d*$", pp):
             raise UserInputError(
                 "Adding was unsuccessful. " +
                 "Invalid pages pertinent (should be of either format start-end or page).")
