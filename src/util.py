@@ -19,6 +19,8 @@ def validate_reference(author, title, journal, year, pp):
         raise UserInputError("Adding was unsuccessful. Invalid year.")
 
     if pp is not None:
+        if len(pp) >= 20:
+            raise UserInputError("Pages pertinent value is too long (needs to be less than 20 characters).")
         if not re.match(r"^\d+-?\d*$", pp):
             raise UserInputError(
                 "Adding was unsuccessful. " +
