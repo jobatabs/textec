@@ -36,6 +36,28 @@ Adding a reference with invalid pages pertinent
     Submit New Reference
     Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
 
+Adding a reference with invalid pages pertinent format
+    Go To Main Page
+    Click Link  Add a new reference
+    Set Author  Allan Collins and John Seely Brown and Ann Holum
+    Set Title  Cognitive apprenticeship: making thinking visible
+    Set Journal  American Educator
+    Set Year  1991
+    Set Pages Pertinent    215-kolme
+    Submit New Reference
+    Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
+
+Adding a reference with invalid pages pertinent format
+    Go To Main Page
+    Click Link  Add a new reference
+    Set Author  Allan Collins and John Seely Brown and Ann Holum
+    Set Title  Cognitive apprenticeship: making thinking visible
+    Set Journal  American Educator
+    Set Year  1991
+    Set Pages Pertinent    kolme-215
+    Submit New Reference
+    Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
+
 *** Keywords ***
 Adding A Valid Reference Should Succeed With Message
     [Arguments]  ${message}

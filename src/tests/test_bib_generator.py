@@ -44,7 +44,6 @@ class TestReferenceRoutes(unittest.TestCase):
         expected_bib_file = ""
         self.assertEqual(generated_bib, expected_bib_file)
 
-
     def test_generate_bibfile(self):
         response = self.client.get(
             "/export_bibtex_file", follow_redirects=True)

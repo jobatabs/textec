@@ -53,7 +53,7 @@ def delete(reference_id):
 
 
 @app.route("/delete/<reference_id>", methods=["GET"])
-def handle_get_delete(reference_id): # pylint: disable=unused-argument
+def handle_get_delete(reference_id):  # pylint: disable=unused-argument
     flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
 
