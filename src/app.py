@@ -22,16 +22,27 @@ def new():
 
 @app.route("/create", methods=["POST"])
 def creation():
-    author = request.form.get("author")
-    title = request.form.get("title")
-    journal = request.form.get("journal")
-    year = request.form.get("year")
-    pp = request.form.get("pp") if request.form.get("pp") != "" else None
+    inputs = ["author", "title", "journal", "year", "type", "pp", "volume", "number", "publisher", "howpublished", "note"]
+
+    reference_dict = {input: request.form.get(input) if request.form.get(input) != "" else None for input in inputs}
+    
+    # author = request.form.get("author")
+    # title = request.form.get("title")
+    # journal = request.form.get("journal")
+    # year = request.form.get("year")
+    # type = request.form.get("type")
+    # pp = request.form.get("pp") if request.form.get("pp") != "" else None
+    # volume = request.form.get("volume") if request.form.get("volume") != "" else None
+    # number = request.form.get("number") if request.form.get("number") != "" else None
+    # publisher = request.form.get("publisher") if request.form.get("publisher") != "" else None
+    # howpublished = request.form.get("howpublished") if request.form.get("howpublished") != "" else None
+    # note = request.form.get("note") if request.form.get("note") != "" else None
+
 
     try:
-        validate_reference(author, title, journal, year, pp)
-        create_reference(author, title, journal, year, pp)
-        flash(f"Successfully added reference {title}.", 'success')
+        validate_reference(reference_dict)
+        create_reference(reference_dict)
+        flash(f"Successfully added reference {reference_dict['title']}.", 'success') #toimiiko?
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')

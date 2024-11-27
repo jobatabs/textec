@@ -2,7 +2,7 @@
 name = "textec"
 version = "0.1.0"
 description = ""
-authors = ["Jonatan Noponen <2370315+jobatabs@users.noreply.github.com>", "Juho Kemppainen <juho.hm.kemppainen@helsinki.fi>", "Lenni Martikainen <lenni.martikainen@helsinki.fi>", "Salla Korhonen <73477364+sakorh@users.noreply.github.com>"]
+authors = ["Jonatan Noponen <2370315+jobatabs@users.noreply.github.com>", "Juho Kemppainen <juho.hm.kemppainen@helsinki.fi>", "Lenni Martikainen <lenni.martikainen@helsinki.fi>", "Salla Korhonen <73477364+sakorh@users.noreply.github.com>", "Simona Callegari <simona.callegari@helsinki.fi>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
