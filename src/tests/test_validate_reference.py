@@ -24,6 +24,10 @@ class TestValidateReference(unittest.TestCase):
     def test_invalid_pp(self):
         self.assertRaises(UserInputError, validate_reference,
                           "Mikko Mallikainen", "Artikkeli", "Lehti", 2001, "kaksi")
+    
+    def test_pp_too_long(self):
+        self.assertRaises(UserInputError, validate_reference, "Mikko Mallikainen", "Artikkeli", "Lehti",
+                          2001, "aivanliianpitkä, siis naurettavan pitkä, aivan todella pitkä merkkijono")
 
     def test_invalid_year(self):
         self.assertRaises(UserInputError, validate_reference, "Mikko Mallikainen", "Artikkeli", "Lehti",
