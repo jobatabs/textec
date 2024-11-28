@@ -22,8 +22,7 @@ def new():
 
 @app.route("/create", methods=["POST"])
 def creation():
-    inputs = ["author", "title", "journal", "year", "type", "pp", "volume", "number", "publisher", "howpublished", "note"]
-
+    inputs = ["type", "author", "title", "year", "journal", "volume", "number", "publisher", "howpublished", "note", "pp"]
     reference_dict = {input: request.form.get(input) if request.form.get(input) != "" else None for input in inputs}
     
     # author = request.form.get("author")

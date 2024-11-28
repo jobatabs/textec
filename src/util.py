@@ -1,22 +1,28 @@
 import re
-
+from entities.reference import Reference
 
 class UserInputError(Exception):
     pass
 
 
-def validate_reference(author, title, journal, year, pp):
-    if not all([author, title, journal, year]):
+def validate_reference(ref_dict: dict):
+
+    author = ref_dict.get("author")
+    title = ref_dict.get("title")
+    year = ref_dict.get("year")
+    pp = ref_dict.get("pp")
+
+    if not all([author, title, year]):
         raise UserInputError(
             "Adding was unsuccessful. All required fields need to be filled.")
 
     try:
         int(year)
     except ValueError as exc:
-        raise UserInputError("Adding was unsuccessful. Invalid year.") from exc
+        raise UserInputError("Adding was unsuccessful. Invalid year. Must be a number.") from exc
 
     if int(year) < 0:
-        raise UserInputError("Adding was unsuccessful. Invalid year.")
+        raise UserInputError("Adding was unsuccessful. Invalid year. Must be a positive number.")
 
     if pp is not None:
         if len(pp) >= 20:
@@ -25,7 +31,7 @@ def validate_reference(author, title, journal, year, pp):
         if not re.match(r"^\d+-?\d*$", pp):
             raise UserInputError(
                 "Adding was unsuccessful. " +
-                "Invalid pages pertinent (should be of either format start-end or page).")
+                "Invalid pages pertinent (should be of either of format start-end or page).")
 
     # if len(content) < 5:
         # raise UserInputError("Todo content length must be greater than 4")
