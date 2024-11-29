@@ -44,43 +44,6 @@ def create_reference(references:dict): #toimiiko???
     db.session.execute(sql, filtered_references)
     db.session.commit()
 
-
-"""
-    if pp is not None:
-        sql = text(
-            "INSERT INTO reference_items (author, title, journal, year, type,
-            pp, volume, number, publisher, howpublished, note)"
-            "VALUES (:author, :title, :journal, :year, :type,
-            :pp, :volume, :number, :publisher, :howpublished, :note)"
-        )
-        db.session.execute(sql, {
-            "author": author,
-            "title": title,
-            "journal": journal,
-            "year": year,
-            "type": type
-            "pp": pp,
-            "volume": volume,
-            "number": number,
-            "publisher": publisher,
-            "howpublished": howpublished,
-            "note": note
-        })
-    else:
-        sql = text(
-            "INSERT INTO reference_items (author, title, journal, year) "
-            "VALUES (:author, :title, :journal, :year)"
-        )
-        db.session.execute(sql, {
-            "author": author,
-            "title": title,
-            "journal": journal,
-            "year": year
-        })
-
-    db.session.commit()
-"""
-
 def get_title(_id):
     sql = text("SELECT title FROM reference_items WHERE id = :id")
     result = db.session.execute(sql, {"id": _id}).fetchone()

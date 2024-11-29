@@ -27,20 +27,8 @@ def new():
 def creation():
     inputs = ["author", "title", "year", "journal", "volume", "number", "publisher", "howpublished", "note", "pp"]
     reference_dict = {input: request.form.get(input) if request.form.get(input) != "" else None for input in inputs}
-    reference_dict["type"] = request.form.get("type")
-
-    # author = request.form.get("author")
-    # title = request.form.get("title")
-    # journal = request.form.get("journal")
-    # year = request.form.get("year")
-    # type = request.form.get("type")
-    # pp = request.form.get("pp") if request.form.get("pp") != "" else None
-    # volume = request.form.get("volume") if request.form.get("volume") != "" else None
-    # number = request.form.get("number") if request.form.get("number") != "" else None
-    # publisher = request.form.get("publisher") if request.form.get("publisher") != "" else None
-    # howpublished = request.form.get("howpublished") if request.form.get("howpublished") != "" else None
-    # note = request.form.get("note") if request.form.get("note") != "" else None
-
+    selected_type = request.form.get("type")
+    reference_dict["type"] = selected_type
 
     try:
         validate_reference(reference_dict)
@@ -49,7 +37,8 @@ def creation():
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')
-        return redirect("/new")
+        fields = Reference.get_fields(type)
+        return render_template("new.html", fields=fields, required=["author", "title", "year"], type=selected_type)
 
 
 @app.route("/delete/<reference_id>", methods=["POST"])

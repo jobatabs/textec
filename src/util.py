@@ -23,6 +23,9 @@ def validate_reference(ref_dict: dict):
 
     if int(year) < 0:
         raise UserInputError("Adding was unsuccessful. Invalid year. Must be a positive number.")
+    
+    if int(year) < 1500:
+        raise UserInputError("Adding was unsuccessful. Invalid year.")
 
     if pp is not None:
         if len(pp) >= 20:
