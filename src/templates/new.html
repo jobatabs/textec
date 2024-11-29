@@ -20,24 +20,19 @@ Add reference
       </div>
     {% endif %}
   {% endwith %}
-  <label class="required" for="type">Type:</label><br />
-  <input type="text" name="type" id="type" required>
+
+  {% for field in fields %}
+  {% if field in required %}
+  <label class="required" for="field">{{ field }}:</label><br />
+  <input type="text" name={{field}} id={{field}} required>
   <br />
-  <label class="required" for="author">Author:</label><br />
-  <input type="text" name="author" id="author" required>
+  {% else %}
+  <label for="field">{{ field }}:</label><br />
+  <input type="text" name={{field}} id={{field}}>
   <br />
-  <label class="required" for="title">Title:</label><br />
-  <input type="text" name="title" id="title" required>
-  <br />
-  <label class="required" for="journal">Journal:</label><br />
-  <input type="text" name="journal" id="journal" required>
-  <br />
-  <label class="required" for="year">Year:</label><br />
-  <input type="text" name="year" id="year" required>
-  <br />
-  <label for="pp">Pages pertinent:</label><br />
-  <input type="text" name="pp" id="pp">
-  <br /><br  />
+  {% endif %}
+  {% endfor %}
+  <input type="hidden" id="type" name="type" value={{type}}>
   <button type="submit">
     Save
   </button>

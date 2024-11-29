@@ -40,7 +40,7 @@ def setup_db():
         "  id SERIAL PRIMARY KEY,"
         "  author TEXT NOT NULL,"
         "  title TEXT NOT NULL,"
-        "  journal TEXT NOT NULL,"
+        "  journal TEXT,"
         "  year INTEGER NOT NULL,"
         "  type TEXT NOT NULL,"
         "  pp TEXT,"

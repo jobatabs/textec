@@ -7,6 +7,7 @@ from repositories.reference_repository import (
 from config import app, test_env
 from util import validate_reference, UserInputError
 from bib_generator import create_bibfile
+from entities.reference import Reference
 
 
 @app.route("/")
@@ -15,16 +16,19 @@ def index():
     return render_template("index.html", references=references)
 
 
-@app.route("/new")
+@app.route("/new", methods=["POST"])
 def new():
-    return render_template("new.html")
+    selected_type = request.form.get("type")
+    fields = Reference.get_fields(selected_type)
+    return render_template("new.html", fields=fields, required=["author", "title", "year"], type=selected_type)
 
 
 @app.route("/create", methods=["POST"])
 def creation():
-    inputs = ["type", "author", "title", "year", "journal", "volume", "number", "publisher", "howpublished", "note", "pp"]
+    inputs = ["author", "title", "year", "journal", "volume", "number", "publisher", "howpublished", "note", "pp"]
     reference_dict = {input: request.form.get(input) if request.form.get(input) != "" else None for input in inputs}
-    
+    reference_dict["type"] = request.form.get("type")
+
     # author = request.form.get("author")
     # title = request.form.get("title")
     # journal = request.form.get("journal")
