@@ -43,6 +43,9 @@ TexTec
         <form action="/delete/{{ reference.reference.id }}" method="post" style="margin-left: 10px;">
           <button type="submit">Delete</button>
         </form>
+        <form action="/edit/{{ reference.reference.id }}" method="get" style="margin-left: 10px;">
+          <button type="submit">Edit</button>
+        </form>
       {% endif %}
     </li>
   {% endfor %}

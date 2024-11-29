@@ -71,6 +71,10 @@ def handle_get_delete(reference_id):  # pylint: disable=unused-argument
     flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
 
+@app.route("/edit/<reference_id>", methods=["GET"])
+def edit(reference_id): # pylint: disable=unused-argument
+    return redirect("/")
+
 
 @app.route("/export_bibtex_file")
 def export_bibtex_file():
