@@ -49,6 +49,27 @@ Set Year
     [Arguments]  ${year}
     Input Text  year  ${year}
 
+Set Volume
+    [Arguments]  ${volume}
+    Input Text  volume  ${volume}
+
+Set Number
+    [Arguments]  ${number}
+    Input Text  number  ${number}
+
+Set Publisher
+    [Arguments]  ${publisher}
+    Input Text  id=publisher  ${publisher}
+
+Set Howpublished
+    [Arguments]  ${howpublished}
+    Input Text  howpublished  ${howpublished}
+
+Set Note
+    [Arguments]  ${note}
+    Input Text  note  ${note}
+
+
 Set Pages Pertinent
     [Arguments]  ${pp}
     Input Text  pp  ${pp}
@@ -61,3 +82,11 @@ Main Page Should Be Open
 
 Add Reference Page Should Be Open
     Title Should Be  Add reference
+
+Click Dropdown
+    [Arguments]    ${dropdown_name}
+    Click Element    name=${dropdown_name}
+
+Select Type
+    [Arguments]    ${dropdown_name}    ${value}
+    Select From List By Value    name=${dropdown_name}    ${value}

@@ -152,7 +152,16 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(
             b"Adding was unsuccessful. All required fields need to be filled.", response.data)
+        
+    def test_new_post_route(self):
+        type = "article"
 
+        response = self.client.post(
+            "/new",
+            data=type,
+            follow_redirects=True
+        )     
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":
     unittest.main()

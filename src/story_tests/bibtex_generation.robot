@@ -10,7 +10,9 @@ Variables  vars.py
 A BibTeX file can be downloaded
     [Teardown]  Remove Downloaded File
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator

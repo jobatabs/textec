@@ -7,7 +7,9 @@ Test Setup       Reset References
 *** Test Cases ***
 Adding a valid reference without optional field
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator
@@ -18,7 +20,9 @@ Adding a valid reference without optional field
 
 Adding a reference with optional field (multiple pages pertinent)
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator
@@ -30,7 +34,9 @@ Adding a reference with optional field (multiple pages pertinent)
 
 Adding a reference with optional field (single page pertinent)
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator

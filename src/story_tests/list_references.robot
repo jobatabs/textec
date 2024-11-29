@@ -7,7 +7,9 @@ Test Setup       Reset References
 *** Test Cases ***
 Unsuccessfully saved reference is not listed on main page
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator
@@ -18,7 +20,9 @@ Unsuccessfully saved reference is not listed on main page
 
 Successfully saved reference is listed on main page
     Go To Main Page
-    Click Link  Add a new reference
+    Click Dropdown  type
+    Select Type  type  article
+    Click Button  Go
     Set Author  Allan Collins and John Seely Brown and Ann Holum
     Set Title  Cognitive apprenticeship: making thinking visible
     Set Journal  American Educator

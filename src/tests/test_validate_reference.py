@@ -67,3 +67,12 @@ class TestValidateReference(unittest.TestCase):
                 "pp": "213"
         }        
         self.assertRaises(UserInputError, validate_reference, data)
+
+    def test_year_too_small(self):
+        data = {
+                "type": "article",
+                "author": "Mikko Mallikainen",
+                "title": "Artikkeli",
+                "year": "1000",
+        }        
+        self.assertRaises(UserInputError, validate_reference, data)
