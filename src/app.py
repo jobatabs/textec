@@ -33,7 +33,7 @@ def creation():
     try:
         validate_reference(reference_dict)
         create_reference(reference_dict)
-        flash(f"Successfully added reference {reference_dict['title']}.", 'success') #toimiiko?
+        flash(f"Successfully added reference {reference_dict['title']}.", 'success') 
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')

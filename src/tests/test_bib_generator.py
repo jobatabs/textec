@@ -27,10 +27,11 @@ class TestReferenceRoutes(unittest.TestCase):
         self.client.post(
             "/create",
             data={
+                "type": "article",
                 "author": "Author A",
                 "title": "Title A",
-                "journal": "Journal A",
-                "year": "2021"
+                "year": "2021",
+                "journal": "Journal A"        
             },
             follow_redirects=True
         )
@@ -56,8 +57,8 @@ class TestReferenceRoutes(unittest.TestCase):
             '@Article{Tit2021,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
-            '  journal  = "Journal A",\n'
-            '  year     = "2021"\n'
+            '  year     = "2021",\n'
+            '  journal  = "Journal A"\n'
             '}\n\n'
         )
         self.assertEqual(generated_bib, expected_bib_file)

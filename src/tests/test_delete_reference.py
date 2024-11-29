@@ -24,10 +24,11 @@ class TestDeleteReferenceRoutes(unittest.TestCase):
         self.client.post(
             "/create",
             data={
+                "type": "article",
                 "author": "Author A",
                 "title": "Title A",
-                "journal": "Journal A",
-                "year": "2021"
+                "year": "2021",
+                "journal": "Journal A" 
             },
             follow_redirects=True
         )

@@ -7,8 +7,7 @@ def create_bibfile(reference_list: list[Reference] = []):
     with open("references.bib", "w", encoding="utf-8") as f:
         for reference in reference_list:
             tag = generate_tag(reference)
-            f.write(f"@{reference.reference['type']}{{{tag},\n")
-
+            f.write(f"@{reference.reference['type'].capitalize()}{{{tag},\n")
             fields = Reference.get_fields(reference.reference["type"])
 
             attributes = []

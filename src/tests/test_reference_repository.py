@@ -19,18 +19,22 @@ class TestReferenceRoutes(unittest.TestCase):
     def setUp(self):
         reset_db()
         self.client = app.test_client()
-
-    def test_create_reference_successful(self):
-        response = self.client.post(
-            "/create",
-            data={
+        self.data = {
                 "author": "Author A",
                 "title": "Title A",
-                "journal": "Journal A",
                 "year": "2021"
-            },
+        }
+
+    def test_create_article_reference_successful(self):
+        self.data['type'] = "article"
+        self.data['journal'] = "Journal A"
+        self.data['volume'] = "50"
+        self.data['number'] = "1"
+        response = self.client.post(
+            "/create",
+            data=self.data,
             follow_redirects=True
-        )
+        )     
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Successfully added reference Title A.", response.data)
@@ -40,19 +44,50 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertIn(b"Title A", response.data)
         self.assertIn(b"Journal A", response.data)
         self.assertIn(b"2021", response.data)
+        self.assertIn(b"50", response.data)
+        self.assertIn(b"1", response.data)
+
+    def test_create_misc_reference_successful(self):
+        self.data['type'] = "misc"
+        self.data['howpublished'] = "Web"
+        self.data['note'] = "Suomennettu 2001"
+        response = self.client.post(
+            "/create",
+            data=self.data,
+            follow_redirects=True
+        )       
+
+        response = self.client.get("/")
+        self.assertIn(b"Author A", response.data)
+        self.assertIn(b"Title A", response.data)
+        self.assertIn(b"2021", response.data)   
+        self.assertIn(b"Web", response.data)    
+        self.assertIn(b"Suomennettu 2001", response.data)   
+
+    def test_create_book_reference_successful(self):
+        self.data['type'] = "book"
+        self.data['publisher'] = "Kustantaja Oy"
+        response = self.client.post(
+            "/create",
+            data=self.data,
+            follow_redirects=True
+        )       
+
+        response = self.client.get("/")
+        self.assertIn(b"Author A", response.data)
+        self.assertIn(b"Title A", response.data)
+        self.assertIn(b"2021", response.data)   
+        self.assertIn(b"Kustantaja Oy", response.data)             
 
     def test_create_reference_with_pp_successful(self):
+        self.data['type'] = "article"
+        self.data['journal'] = "Journal A"
+        self.data['pp'] = "213-250"
         response = self.client.post(
             "/create",
-            data={
-                "author": "Author A",
-                "title": "Title A",
-                "journal": "Journal A",
-                "year": "2021",
-                "pp": "213-250"
-            },
+            data=self.data,
             follow_redirects=True
-        )
+        )     
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Successfully added reference Title A.", response.data)
@@ -62,19 +97,16 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertIn(b"Title A", response.data)
         self.assertIn(b"Journal A", response.data)
         self.assertIn(b"2021", response.data)
-        self.assertIn(b"(pp. 213-250)", response.data)
+        self.assertIn(b"pp. 213-250", response.data)
 
     def test_create_reference_invalid_year(self):
+        self.data['type'] = "article"
+        self.data['year'] = "not_a_year"
         response = self.client.post(
             "/create",
-            data={
-                "author": "Author A",
-                "title": "Title A",
-                "journal": "Journal A",
-                "year": "not_a_year"
-            },
+            data=self.data,
             follow_redirects=True
-        )
+        )     
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
@@ -83,17 +115,13 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertNotIn(b"Author A", response.data)
 
     def test_create_reference_invalid_pp(self):
+        self.data['type'] = "article"
+        self.data['pp'] = "kaksisataa"
         response = self.client.post(
             "/create",
-            data={
-                "author": "Author A",
-                "title": "Title A",
-                "journal": "Journal A",
-                "year": "2021",
-                "pp": "kaksisataa"
-            },
+            data=self.data,
             follow_redirects=True
-        )
+        )     
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(
@@ -103,17 +131,13 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertNotIn(b"Author A", response.data)
 
     def test_create_reference_negative_year(self):
+        self.data['type'] = "article"
+        self.data['year'] = "-1"
         response = self.client.post(
             "/create",
-            data={
-                "author": "Author A",
-                "title": "Title A",
-                "journal": "Journal A",
-                "year": "-1"
-            },
+            data=self.data,
             follow_redirects=True
-        )
-
+        )     
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
 
