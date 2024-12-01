@@ -2,7 +2,8 @@ from flask import redirect, render_template, request, jsonify, flash, send_file
 from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
 from repositories.reference_repository import (
-    get_references, create_reference, delete_reference, get_title
+    get_references, create_reference, delete_reference, get_title,
+    get_reference_by_id, update_reference
 )
 from config import app, test_env
 from util import validate_reference, UserInputError
@@ -25,15 +26,18 @@ def new():
 
 @app.route("/create", methods=["POST"])
 def creation():
-    inputs = ["author", "title", "year", "journal", "volume", "number", "publisher", "howpublished", "note", "pp"]
-    reference_dict = {input: request.form.get(input) if request.form.get(input) != "" else None for input in inputs}
+    inputs = ["author", "title", "year", "journal", "volume",
+              "number", "publisher", "howpublished", "note", "pp"]
+    reference_dict = {input: request.form.get(input) if request.form.get(
+        input) != "" else None for input in inputs}
     selected_type = request.form.get("type")
     reference_dict["type"] = selected_type
 
     try:
         validate_reference(reference_dict)
         create_reference(reference_dict)
-        flash(f"Successfully added reference {reference_dict['title']}.", 'success') 
+        flash(
+            f"Successfully added reference {reference_dict['title']}.", 'success')
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')
@@ -60,8 +64,39 @@ def handle_get_delete(reference_id):  # pylint: disable=unused-argument
     flash("GET requests are not allowed for deletion.", "error")
     return redirect("/")
 
+
 @app.route("/edit/<reference_id>", methods=["GET"])
-def edit(reference_id): # pylint: disable=unused-argument
+def edit(reference_id):
+    reference = get_reference_by_id(reference_id)
+
+    if not reference:
+        flash("Reference not found.", "error")
+        return redirect("/")
+
+    fields = Reference.get_fields(reference.reference["type"])
+
+    return render_template(
+        "edit.html",
+        reference=reference.reference,
+        fields=fields,
+        required=["author", "title", "year"],
+    )
+
+
+@app.route("/edit/<reference_id>", methods=["POST"])
+def update_reference_route(reference_id):
+    inputs = ["author", "title", "year", "journal", "volume",
+              "number", "publisher", "howpublished", "note", "pp"]
+    updated_data = {input: request.form.get(input) if request.form.get(
+        input) != "" else None for input in inputs}
+
+    try:
+        update_reference(reference_id, updated_data)
+        flash(
+            f"Successfully updated reference {updated_data['title']}.", "success")
+    except SQLAlchemyError:
+        flash("An error occurred while updating the reference.", "error")
+
     return redirect("/")
 
 

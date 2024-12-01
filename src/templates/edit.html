@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Edit reference
+{% endblock %}
+
+{% block body %}
+
+<h2>Edit reference</h2>
+
+<form action="/edit/{{ reference.id }}" method="post">
+  {% with errors = get_flashed_messages(category_filter=["error"]) %}
+    {% if errors %}
+      <div class="alert alert-danger alert-dismissable fade show" role="alert">
+        <ul>
+        {% for message in errors %}
+          <li>{{ message }} <a href="/edit/{{ reference.id }}">Close</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% for field in fields %}
+  {% if field in required %}
+  <label class="required" for="{{ field }}">{{ field }}:</label><br />
+  <input 
+    type="text" 
+    name="{{ field }}" 
+    id="{{ field }}" 
+    value="{{ reference[field] if reference[field] else '' }}" 
+    required
+  >
+  <br />
+  {% else %}
+  <label for="{{ field }}">{{ field }}:</label><br />
+  <input 
+    type="text" 
+    name="{{ field }}" 
+    id="{{ field }}" 
+    value="{{ reference[field] if reference[field] else '' }}"
+  >
+  <br />
+  {% endif %}
+  {% endfor %}
+  
+  <input type="hidden" id="type" name="type" value="{{ reference.type }}">
+  <button type="submit">
+    Save
+  </button>
+</form>
+
+{% endblock %}

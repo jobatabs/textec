@@ -1,6 +1,7 @@
 import re
 from entities.reference import Reference
 
+
 class UserInputError(Exception):
     pass
 
@@ -19,11 +20,13 @@ def validate_reference(ref_dict: dict):
     try:
         int(year)
     except ValueError as exc:
-        raise UserInputError("Adding was unsuccessful. Invalid year. Must be a number.") from exc
+        raise UserInputError(
+            "Adding was unsuccessful. Invalid year. Must be a number.") from exc
 
     if int(year) < 0:
-        raise UserInputError("Adding was unsuccessful. Invalid year. Must be a positive number.")
-    
+        raise UserInputError(
+            "Adding was unsuccessful. Invalid year. Must be a positive number.")
+
     if int(year) < 1500:
         raise UserInputError("Adding was unsuccessful. Invalid year.")
 

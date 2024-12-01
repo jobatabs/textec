@@ -20,9 +20,9 @@ class TestReferenceRoutes(unittest.TestCase):
         reset_db()
         self.client = app.test_client()
         self.data = {
-                "author": "Author A",
-                "title": "Title A",
-                "year": "2021"
+            "author": "Author A",
+            "title": "Title A",
+            "year": "2021"
         }
 
     def test_create_article_reference_successful(self):
@@ -34,7 +34,7 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )     
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Successfully added reference Title A.", response.data)
@@ -55,14 +55,14 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )       
+        )
 
         response = self.client.get("/")
         self.assertIn(b"Author A", response.data)
         self.assertIn(b"Title A", response.data)
-        self.assertIn(b"2021", response.data)   
-        self.assertIn(b"Web", response.data)    
-        self.assertIn(b"Suomennettu 2001", response.data)   
+        self.assertIn(b"2021", response.data)
+        self.assertIn(b"Web", response.data)
+        self.assertIn(b"Suomennettu 2001", response.data)
 
     def test_create_book_reference_successful(self):
         self.data['type'] = "book"
@@ -71,13 +71,13 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )       
+        )
 
         response = self.client.get("/")
         self.assertIn(b"Author A", response.data)
         self.assertIn(b"Title A", response.data)
-        self.assertIn(b"2021", response.data)   
-        self.assertIn(b"Kustantaja Oy", response.data)             
+        self.assertIn(b"2021", response.data)
+        self.assertIn(b"Kustantaja Oy", response.data)
 
     def test_create_reference_with_pp_successful(self):
         self.data['type'] = "article"
@@ -87,7 +87,7 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )     
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Successfully added reference Title A.", response.data)
@@ -106,7 +106,7 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )     
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
@@ -121,7 +121,7 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )     
+        )
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(
@@ -137,7 +137,7 @@ class TestReferenceRoutes(unittest.TestCase):
             "/create",
             data=self.data,
             follow_redirects=True
-        )     
+        )
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
 
@@ -152,7 +152,7 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(
             b"Adding was unsuccessful. All required fields need to be filled.", response.data)
-        
+
     def test_new_post_route(self):
         type = "article"
 
@@ -160,8 +160,9 @@ class TestReferenceRoutes(unittest.TestCase):
             "/new",
             data=type,
             follow_redirects=True
-        )     
+        )
         self.assertEqual(response.status_code, 200)
+
 
 if __name__ == "__main__":
     unittest.main()

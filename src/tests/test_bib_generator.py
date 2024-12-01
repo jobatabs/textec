@@ -31,7 +31,7 @@ class TestReferenceRoutes(unittest.TestCase):
                 "author": "Author A",
                 "title": "Title A",
                 "year": "2021",
-                "journal": "Journal A"        
+                "journal": "Journal A"
             },
             follow_redirects=True
         )
