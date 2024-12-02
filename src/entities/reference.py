@@ -21,26 +21,31 @@ class Reference:
     def get_fields(cls, reference_type):
         fields = ["author", "title", "year"]
         if reference_type == 'article':
-            fields.extend(['journal', 'volume', 'number'])
+            fields.extend(['journal', 'pp', 'volume', 'number'])
         elif reference_type == 'book':
-            fields.append('publisher')
+            fields.extend(['publisher', 'pp'])
         else:  # type=misc
-            fields.extend(['howpublished', 'note'])
+            fields.extend(['howpublished', 'note', 'pp'])
 
-        fields.append('pp')
         return fields
 
     def __str__(self):
         output = []
-        for field in self.__class__.get_fields(self.reference['type']):
+        fields_for_type = self.__class__.get_fields(self.reference['type'])
+        fields_for_type.remove("year")
+        fields_for_type.append("year")
+        for field in fields_for_type:
             value = self.reference.get(field)
             if value is not None:
-                if field == "pp":
-                    output.append(f"pp. {value}")
+                if field == "journal" and "pp" in fields_for_type \
+                    and self.reference.get("pp") is not None:
+                    output.append(f"{str(value)} ")
+                elif field == "pp":
+                    output.append(f"(pp. {value}), ")
                 else:
-                    output.append(str(value))
+                    output.append(f"{str(value)}, ")
 
-        return ", ".join(output)
+        return "".join(output)[:-2]
 
 
 if __name__ == "__main__":  # pragma: no cover

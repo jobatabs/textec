@@ -42,7 +42,7 @@ Adding a valid article reference
     Set Number  2
     Submit New Reference
     Adding A Valid Reference Should Succeed With Message  Successfully added reference Cognitive apprenticeship: making thinking visible.
-    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, 1991, American Educator, 50, 2
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 50, 2, 1991
 
 Adding a valid misc type reference
     Go To Main Page
@@ -56,7 +56,7 @@ Adding a valid misc type reference
     Set Note  Translated to english
     Submit New Reference
     Adding A Valid Reference Should Succeed With Message  Successfully added reference Cognitive apprenticeship: making thinking visible.
-    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, 1991, Web, Translated to english
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, Web, Translated to english, 1991
 
 Adding a valid book type reference
     Go To Main Page
@@ -69,7 +69,7 @@ Adding a valid book type reference
     Set Publisher  Penguin Classics
     Submit New Reference
     Adding A Valid Reference Should Succeed With Message  Successfully added reference Cognitive apprenticeship: making thinking visible.
-    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, 1991, Penguin Classics
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, Penguin Classics, 1991
 
 Adding a reference with invalid year
     Go To Main Page
