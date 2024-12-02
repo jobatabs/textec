@@ -26,7 +26,7 @@ Editing an added reference
     Set Volume  50
     Set Number  2
     Save Edited Reference
-    Editing A Valid Reference Should Succeed With Message    Rune Klevjer, In defense of cutscenes, Computer games and digital culture conference proceedings, 50, 2, 2002
+    Editing A Valid Reference Should Succeed With Message    Rune Klevjer, In defense of cutscenes, Computer games and digital culture conference proceedings, vol. 50, no. 2, 2002
 
 
 *** Keywords ***

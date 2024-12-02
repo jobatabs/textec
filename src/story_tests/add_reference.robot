@@ -42,7 +42,7 @@ Adding a valid article reference
     Set Number  2
     Submit New Reference
     Adding A Valid Reference Should Succeed With Message  Successfully added reference Cognitive apprenticeship: making thinking visible.
-    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 50, 2, 1991
+    Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, vol. 50, no. 2, 1991
 
 Adding a valid misc type reference
     Go To Main Page
