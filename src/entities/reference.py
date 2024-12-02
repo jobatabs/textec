@@ -38,7 +38,7 @@ class Reference:
             value = self.reference.get(field)
             if value is not None:
                 if field == "journal" and "pp" in fields_for_type \
-                    and self.reference.get("pp") is not None:
+                        and self.reference.get("pp") is not None:
                     output.append(f"{str(value)} ")
                 elif field == "pp":
                     output.append(f"(pp. {value}), ")
