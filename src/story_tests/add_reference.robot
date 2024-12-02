@@ -96,7 +96,7 @@ Adding a reference with invalid pages pertinent
     Submit New Reference
     Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
 
-Adding a reference with invalid pages pertinent format
+Adding a reference with invalid pages pertinent format, letters last
     Go To Main Page
     Click Dropdown  type
     Select Type  type  article
@@ -109,7 +109,7 @@ Adding a reference with invalid pages pertinent format
     Submit New Reference
     Adding An Invalid Reference Should Fail With Message  Invalid pages pertinent
 
-Adding a reference with invalid pages pertinent format
+Adding a reference with invalid pages pertinent format, letters first
     Go To Main Page
     Click Dropdown  type
     Select Type  type  article
