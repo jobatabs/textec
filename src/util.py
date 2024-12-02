@@ -1,5 +1,4 @@
 import re
-from entities.reference import Reference
 
 
 class UserInputError(Exception):

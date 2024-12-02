@@ -2,7 +2,10 @@ from entities.reference import Reference
 
 
 # tähän pitäis voida laittaa suoraan get_references()
-def create_bibfile(reference_list: list[Reference] = []):
+def create_bibfile(reference_list: list[Reference] = None):
+    if reference_list is None:
+        reference_list = []
+
     with open("references.bib", "w", encoding="utf-8") as f:
         for reference in reference_list:
             tag = generate_tag(reference)

@@ -1,9 +1,10 @@
 class Reference:
-    def __init__(self, _id: int, type, author, title, year, journal=None, volume=None, number=None, publisher=None, howpublished=None, note=None, pp=None):
+    def __init__(self, _id: int, category, author, title, year, journal=None,
+                 volume=None, number=None, publisher=None, howpublished=None, note=None, pp=None):
         # __tablename__ = "reference_items"
         self.reference = {
             "id": _id,
-            "type": type,
+            "type": category,
             "author": author,
             "title": title,
             "year": year,

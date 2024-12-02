@@ -21,7 +21,8 @@ def index():
 def new():
     selected_type = request.form.get("type")
     fields = Reference.get_fields(selected_type)
-    return render_template("new.html", fields=fields, required=["author", "title", "year"], type=selected_type)
+    return render_template("new.html", fields=fields,
+                           required=["author", "title", "year"], type=selected_type)
 
 
 @app.route("/create", methods=["POST"])
@@ -42,7 +43,8 @@ def creation():
     except UserInputError as error:
         flash(str(error), 'error')
         fields = Reference.get_fields(type)
-        return render_template("new.html", fields=fields, required=["author", "title", "year"], type=selected_type)
+        return render_template("new.html", fields=fields,
+                               required=["author", "title", "year"], type=selected_type)
 
 
 @app.route("/delete/<reference_id>", methods=["POST"])

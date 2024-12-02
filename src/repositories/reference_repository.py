@@ -5,12 +5,13 @@ from entities.reference import Reference
 
 def get_references():
     result = db.session.execute(
-        text("SELECT id, type, author, title, year, journal, volume, number, publisher, howpublished, note, pp FROM reference_items"))
+        text("SELECT id, type, author, title, year, journal, volume, \
+             number, publisher, howpublished, note, pp FROM reference_items"))
     rows = result.fetchall()
     references_list = [
         Reference(
             _id=row[0],
-            type=row[1],
+            category=row[1],
             author=row[2],
             title=row[3],
             year=row[4],
@@ -64,7 +65,7 @@ def get_reference_by_id(reference_id):
     if result:
         return Reference(
             _id=result[0],
-            type=result[1],
+            category=result[1],
             author=result[2],
             title=result[3],
             year=result[4],
