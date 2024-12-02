@@ -42,6 +42,10 @@ class Reference:
                     output.append(f"{str(value)} ")
                 elif field == "pp":
                     output.append(f"(pp. {value}), ")
+                elif field == "volume":
+                    output.append(f"vol. {value}, ")
+                elif field == "number":
+                    output.append(f"no. {value}, ")
                 else:
                     output.append(f"{str(value)}, ")
 
