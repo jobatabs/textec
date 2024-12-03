@@ -5,10 +5,12 @@ from entities.reference import Reference
 def create_bibfile(reference_list: list[Reference] = None):
     if reference_list is None:
         reference_list = []
+    existing_tags = set()
 
     with open("references.bib", "w", encoding="utf-8") as f:
         for reference in reference_list:
-            tag = generate_tag(reference)
+            tag = generate_tag(reference, existing_tags)
+            existing_tags.add(tag)
             f.write(f"@{reference.reference['type'].capitalize()}{{{tag},\n")
             fields = Reference.get_fields(reference.reference["type"])
 
@@ -21,8 +23,13 @@ def create_bibfile(reference_list: list[Reference] = None):
             f.write(",\n".join(attributes) + "\n" + "}\n\n")
 
 
-def generate_tag(ref: Reference):
+def generate_tag(ref: Reference, tags):
     tag = str(ref.reference['title'][:3] + str(ref.reference['year']))
+    if tag in tags:
+        i = 2
+        while f"{tag}-{i}" in tags:
+            i += 1
+        tag = f"{tag}-{i}"
     return tag
 
 
