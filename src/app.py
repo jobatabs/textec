@@ -17,7 +17,7 @@ def index():
     return render_template("index.html", references=references)
 
 
-@app.route("/new", methods=["POST"])
+@app.route("/new", methods=["GET", "POST"])
 def new():
     selected_type = request.form.get("type")
     fields = Reference.get_fields(selected_type)
@@ -42,7 +42,7 @@ def creation():
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')
-        fields = Reference.get_fields(type)
+        fields = Reference.get_fields(selected_type)
         return render_template("new.html", fields=fields,
                                required=["author", "title", "year"], type=selected_type)
 
