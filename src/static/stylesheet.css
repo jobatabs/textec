@@ -1,6 +1,11 @@
-.required::after {
+/*.required::after {
     content: ' *';
     color: firebrick;
+}*/
+.optional::after {
+    content: '       (optional)';
+    color: grey;
+    font-size: 50%;
 }
 form {
     margin-left: 15px;

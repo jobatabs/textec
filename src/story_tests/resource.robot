@@ -1,5 +1,6 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library    XML
 
 *** Variables ***
 ${SERVER}     localhost:5001
@@ -35,29 +36,71 @@ Go To Main Page
 
 Set Author
     [Arguments]  ${author}
+    Clear Element Text    author
     Input Text  author  ${author}
 
 Set Title
     [Arguments]  ${title}
+    Clear Element Text    title
     Input Text  title  ${title}
 
 Set Journal
     [Arguments]  ${journal}
+    Clear Element Text    journal
     Input Text  journal  ${journal}
  
 Set Year
     [Arguments]  ${year}
+    Clear Element Text    year
     Input Text  year  ${year}
+
+Set Volume
+    [Arguments]  ${volume}
+    Clear Element Text    volume
+    Input Text  volume  ${volume}
+
+Set Number
+    [Arguments]  ${number}
+    Clear Element Text    number
+    Input Text  number  ${number}
+
+Set Publisher
+    [Arguments]  ${publisher}
+    Clear Element Text    id=publisher
+    Input Text  id=publisher  ${publisher}
+
+Set Howpublished
+    [Arguments]  ${howpublished}
+    Clear Element Text    howpublished
+    Input Text  howpublished  ${howpublished}
+
+Set Note
+    [Arguments]  ${note}
+    Clear Element Text    note
+    Input Text  note  ${note}
+
 
 Set Pages Pertinent
     [Arguments]  ${pp}
+    Clear Element Text    pp
     Input Text  pp  ${pp}
 
 Submit New Reference
     Click Button  Save
+
+Save Edited Reference
+    Click Button    Save
 
 Main Page Should Be Open
     Page Should Contain  Welcome to TexTec!
 
 Add Reference Page Should Be Open
     Title Should Be  Add reference
+
+Click Dropdown
+    [Arguments]    ${dropdown_name}
+    Click Element    name=${dropdown_name}
+
+Select Type
+    [Arguments]    ${dropdown_name}    ${value}
+    Select From List By Value    name=${dropdown_name}    ${value}

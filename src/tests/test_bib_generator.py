@@ -27,10 +27,11 @@ class TestReferenceRoutes(unittest.TestCase):
         self.client.post(
             "/create",
             data={
+                "type": "article",
                 "author": "Author A",
                 "title": "Title A",
-                "journal": "Journal A",
-                "year": "2021"
+                "year": "2021",
+                "journal": "Journal A"
             },
             follow_redirects=True
         )
@@ -56,8 +57,44 @@ class TestReferenceRoutes(unittest.TestCase):
             '@Article{Tit2021,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
-            '  journal  = "Journal A",\n'
-            '  year     = "2021"\n'
+            '  year     = "2021",\n'
+            '  journal  = "Journal A"\n'
+            '}\n\n'
+        )
+        self.assertEqual(generated_bib, expected_bib_file)
+
+    def test_handle_tag_collision(self):
+        self.client.post(
+            "/create",
+            data={
+                "type": "article",
+                "author": "Author A",
+                "title": "Title A",
+                "year": "2021",
+                "journal": "Journal A"
+            },
+            follow_redirects=True
+        )
+
+        response = self.client.get(
+            "/export_bibtex_file", follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+        with open("references.bib", "r") as f:
+            generated_bib = f.read()
+
+        expected_bib_file = (
+            '@Article{Tit2021,\n'
+            '  author   = "Author A",\n'
+            '  title    = "Title A",\n'
+            '  year     = "2021",\n'
+            '  journal  = "Journal A"\n'
+            '}\n\n'
+            '@Article{Tit2021-2,\n'
+            '  author   = "Author A",\n'
+            '  title    = "Title A",\n'
+            '  year     = "2021",\n'
+            '  journal  = "Journal A"\n'
             '}\n\n'
         )
         self.assertEqual(generated_bib, expected_bib_file)

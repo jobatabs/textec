@@ -31,8 +31,6 @@ TexTec
     {% endif %}
   {% endwith %}
 
-  things still unfinished: {{ unfinished }}
-
 </div>
 
 <ul>
@@ -42,8 +40,11 @@ TexTec
         {{ reference }} 
       </div>
       {% if not reference.done %}
-        <form action="/delete/{{ reference.id }}" method="post" style="margin-left: 10px;">
+        <form action="/delete/{{ reference.reference.id }}" method="post" style="margin-left: 10px;">
           <button type="submit">Delete</button>
+        </form>
+        <form action="/edit/{{ reference.reference.id }}" method="get" style="margin-left: 10px;">
+          <button type="submit">Edit</button>
         </form>
       {% endif %}
     </li>
@@ -51,8 +52,29 @@ TexTec
 </ul>
 
 <div>
-  <a href="/new">Add a new reference </a>
+  <form id="reference-form" action="/new" method="post" onsubmit="return validateSelection()">
+    <label for="reference-type">Add a new reference:</label>
+    <select id="reference-type" name="type" required>
+      <option value="" disabled selected>Select type</option>
+      <option value="misc">Misc</option>
+      <option value="article">Article</option>
+      <option value="book">Book</option>
+    </select>
+    <button type="submit">Go</button>
+  </form>
 </div>
+
+<script>
+  function validateSelection() {
+    const selectElement = document.getElementById("reference-type");
+    if (selectElement.value === "") {
+      alert("Please select a reference type before proceeding.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
 {% if references %}
   <a href="/export_bibtex_file">
     <button>Export BibTeX file</button>

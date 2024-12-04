@@ -37,12 +37,18 @@ def setup_db():
     print(f"Creating table {TABLE_NAME}")
     sql = text(
         f"CREATE TABLE {TABLE_NAME} ("
-        "  id SERIAL PRIMARY KEY, "
+        "  id SERIAL PRIMARY KEY,"
         "  author TEXT NOT NULL,"
         "  title TEXT NOT NULL,"
-        "  journal TEXT NOT NULL,"
+        "  journal TEXT,"
         "  year INTEGER NOT NULL,"
-        "  pp TEXT"
+        "  type TEXT NOT NULL,"
+        "  pp TEXT,"
+        "  volume TEXT,"
+        "  number TEXT,"
+        "  publisher TEXT,"
+        "  howpublished TEXT,"
+        "  note TEXT"
         ")"
     )
 
