@@ -48,3 +48,12 @@ Ollakseen valmis, user storyn toteutuksen tulee olla
 - testattu (unittest, Robot läpi)
 - testaus automatisoitu (CI passing)
 - integroitu muuhun ohjelmistoon ja viety tuotantoympäristöön (main branchissa)
+
+# Hyväksymiskriteerit
+
+[Käyttäjä voi lisätä 3 eri tyyppistä lähdettä](https://github.com/jobatabs/textec/blob/main/src/story_tests/add_reference.robot)
+
+[Käyttäjä voi muokata lisättyä lähdettä](https://github.com/jobatabs/textec/blob/main/src/story_tests/edit_reference.robot)
+
+
+
