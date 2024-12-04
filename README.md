@@ -10,6 +10,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 - [Product backlog](https://github.com/users/jobatabs/projects/1/views/3)
 - [CI](https://github.com/jobatabs/textec/actions)
 - [Sprint backlog](https://docs.google.com/spreadsheets/d/1WLDSrKw92wT9KG-hiETiYCesm8fhF46Eo0MnLOWUtcI/edit?gid=0#gid=0)
+- [Testikattavuus](https://codecov.io/gh/jobatabs/textec)
 
 # Asennusohjeet
 
