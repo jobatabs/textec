@@ -25,6 +25,37 @@ def reset_db():
     sql = text(f"DELETE FROM {TABLE_NAME}")
     db.session.execute(sql)
     db.session.commit()
+    reset_sequence_sql = text(f"ALTER SEQUENCE {TABLE_NAME}_id_seq RESTART WITH 1")
+    db.session.execute(reset_sequence_sql)
+    db.session.commit()
+
+def setup_db_tests():
+    if table_exists(TABLE_NAME):
+        print(f"Table {TABLE_NAME} exists, dropping")
+        sql = text(f"DROP TABLE {TABLE_NAME}")
+        db.session.execute(sql)
+        db.session.commit()
+
+    print(f"Creating table {TABLE_NAME}")
+    sql = text(
+        f"CREATE TABLE {TABLE_NAME} ("
+        "  id SERIAL PRIMARY KEY,"
+        "  author TEXT NOT NULL,"
+        "  title TEXT NOT NULL,"
+        "  journal TEXT,"
+        "  year INTEGER NOT NULL,"
+        "  type TEXT NOT NULL,"
+        "  pp TEXT,"
+        "  volume TEXT,"
+        "  number TEXT,"
+        "  publisher TEXT,"
+        "  howpublished TEXT,"
+        "  note TEXT"
+        ")"
+    )
+
+    db.session.execute(sql)
+    db.session.commit()
 
 
 def setup_db():
@@ -54,6 +85,7 @@ def setup_db():
 
     db.session.execute(sql)
     db.session.commit()
+    
 
     db_setup_items = [
         {"author": "Knuth, Donald E", "title": "The Art of Computer Programming, Volume 1: Fundamental Algorithms",
@@ -75,6 +107,6 @@ def setup_db():
     db.session.commit()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     with app.app_context():
         setup_db()

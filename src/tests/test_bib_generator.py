@@ -1,6 +1,6 @@
 import unittest
 from app import app
-from db_helper import reset_db, setup_db
+from db_helper import reset_db, setup_db_tests
 import os
 from bib_generator import create_bibfile
 
@@ -12,7 +12,7 @@ class TestReferenceRoutes(unittest.TestCase):
         cls.app_context = app.app_context()
         cls.app_context.push()
 
-        setup_db()
+        setup_db_tests()
 
     @classmethod
     def tearDownClass(cls):
@@ -47,7 +47,7 @@ class TestReferenceRoutes(unittest.TestCase):
 
     def test_generate_bibfile(self):
         response = self.client.get(
-            "/export_bibtex_file", follow_redirects=True)
+            "/export_bibtex_file?query=", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
         with open("references.bib", "r") as f:
@@ -77,7 +77,7 @@ class TestReferenceRoutes(unittest.TestCase):
         )
 
         response = self.client.get(
-            "/export_bibtex_file", follow_redirects=True)
+            "/export_bibtex_file?query=", follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
         with open("references.bib", "r") as f:

@@ -1,6 +1,6 @@
 import unittest
 from app import app
-from db_helper import reset_db, setup_db
+from db_helper import reset_db, setup_db_tests
 from sqlalchemy.exc import SQLAlchemyError
 
 
@@ -11,7 +11,7 @@ class TestReferenceRoutes(unittest.TestCase):
         cls.app_context = app.app_context()
         cls.app_context.push()
 
-        setup_db()
+        setup_db_tests()
 
     @classmethod
     def tearDownClass(cls):

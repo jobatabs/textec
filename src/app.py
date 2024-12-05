@@ -38,7 +38,7 @@ def creation():
         validate_reference(reference_dict)
         create_reference(reference_dict)
         flash(
-            f"Successfully added reference {reference_dict['title']}.", 'success')
+            f"Successfully added reference {reference_dict['title']}", 'success')
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')
@@ -53,7 +53,7 @@ def delete(reference_id):
         title = get_title(reference_id)
         if title:
             delete_reference(reference_id)
-            flash(f"Successfully deleted reference {title}.", "success")
+            flash(f"Successfully deleted reference {title}", "success")
         else:
             flash("The reference could not be deleted.", "error")
     except SQLAlchemyError:
@@ -93,12 +93,20 @@ def update_reference_route(reference_id):
         input) != "" else None for input in inputs}
 
     try:
+        validate_reference(updated_data)
         update_reference(reference_id, updated_data)
         flash(
-            f"Successfully updated reference {updated_data['title']}.", "success")
-    except SQLAlchemyError:
-        flash("An error occurred while updating the reference.", "error")
-
+            f"Successfully updated reference {updated_data['title']}", "success")
+    except UserInputError as error:
+        flash(str(error), 'error')
+        reference = get_reference_by_id(reference_id)
+        fields = Reference.get_fields(reference.reference["type"])
+        return render_template(
+            "edit.html",
+            reference=reference.reference,
+            fields=fields,
+            required=["author", "title", "year"],
+    )
     return redirect("/")
 
 
@@ -127,7 +135,7 @@ def search():
 
 
 # testausta varten oleva reitti
-if test_env:
+if test_env: # pragma: no cover
     @app.route("/reset_db")
     def reset_database():
         reset_db()
