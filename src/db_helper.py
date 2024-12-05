@@ -55,6 +55,25 @@ def setup_db():
     db.session.execute(sql)
     db.session.commit()
 
+    db_setup_items = [
+        {"author": "Knuth, Donald E", "title": "The Art of Computer Programming, Volume 1: Fundamental Algorithms",
+            "year": 1968, "type": "book", "publisher": "Addison-Wesley"},
+        {"author": "Tanenbaum, Andrew S., and David J. Wetherall", "title": "Computer Networks",
+            "year": 2011, "type": "misc", "howpublished": "Online", "note": "5th ed. Pearson Education"},
+        {"author": "Turing, Alan M.", "title": "On Computable Numbers, with an Application to the Entscheidungsproblem", "year": 1937,
+            "type": "article", "journal": "Proceedings of the London Mathematical Society", "pp": "230-265", "volume": "s2-42", "number": "1"},
+        {"author": "Cormen, Thomas H., Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein",
+            "title": "Introduction to Algorithms", "year": 2022, "type": "book", "publisher": "The MIT Press", "pp": "112-120"},
+        {"author": "Shannon, C. E.", "title": "A Mathematical Theory of Communication", "year": 1948, "type": "article",
+            "journal": "Bell System Technical Journal", "pp": "379-423", "volume": "27", "number": "3"},
+    ]
+    for reference in db_setup_items:
+        keys = ", ".join(reference.keys())
+        values = ", ".join(f":{key}" for key in reference.keys())
+        sql = text(f"INSERT INTO {TABLE_NAME} ({keys}) VALUES ({values})")
+        db.session.execute(sql, reference)
+    db.session.commit()
+
 
 if __name__ == "__main__":
     with app.app_context():

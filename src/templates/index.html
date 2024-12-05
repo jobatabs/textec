@@ -6,7 +6,12 @@ TexTec
 
 {% block body %}
 
-<h2>Welcome to TexTec!</h2>
+<h2>Welcome to <a href="/">TexTec!</a></h2>
+<form action="/result" method="GET">
+  Search references: <input type="text" name="query">
+  <input type="submit" value=&#128270;>
+</form>
+
 {% with messages = get_flashed_messages(category_filter=["success"]) %}
     {% if messages %}
     <div class="alert alert-success alert-dismissable fade show" role="alert">
@@ -33,6 +38,9 @@ TexTec
 
 </div>
 
+{% if error %}
+  <p>{{ error }}</p>
+{% endif %}
 <ul>
   {% for reference in references %}
     <li style="display: flex">
@@ -41,7 +49,7 @@ TexTec
       </div>
       {% if not reference.done %}
         <form action="/delete/{{ reference.reference.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">Delete</button>
+          <button type="submit" onclick="return confirm('Are you sure you want to delete {{ reference.reference.title }} by {{ reference.reference.author}} ?')">Delete</button>
         </form>
         <form action="/edit/{{ reference.reference.id }}" method="get" style="margin-left: 10px;">
           <button type="submit">Edit</button>
@@ -76,7 +84,7 @@ TexTec
 </script>
 
 {% if references %}
-  <a href="/export_bibtex_file">
+  <a href="/export_bibtex_file?query={{ request.args.get('query', '') }}">
     <button>Export BibTeX file</button>
   </a>
 {% endif %}

@@ -3,7 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
 from repositories.reference_repository import (
     get_references, create_reference, delete_reference, get_title,
-    get_reference_by_id, update_reference
+    get_reference_by_id, update_reference, search_references
 )
 from config import app, test_env
 from util import validate_reference, UserInputError
@@ -104,10 +104,26 @@ def update_reference_route(reference_id):
 
 @app.route("/export_bibtex_file")
 def export_bibtex_file():
-    references = get_references()
+    query = request.args["query"]
+    if query:
+        references = search_references(query)
+    else:
+        references = get_references()
     create_bibfile(references)
 
     return send_file("../references.bib", as_attachment=True, download_name="references.bib")
+
+
+@app.route("/result")
+def search():
+    query = request.args["query"]
+    if query:
+        references = search_references(query)
+        if references:
+            return render_template("index.html", references=references)
+        else:
+            return render_template("index.html", error="Sorry, we couldn't find any matches!")
+    return redirect("/")
 
 
 # testausta varten oleva reitti
