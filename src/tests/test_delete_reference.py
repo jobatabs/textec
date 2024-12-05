@@ -11,7 +11,6 @@ class TestDeleteReferenceRoutes(unittest.TestCase):
         cls.app = app
         cls.app_context = app.app_context()
         cls.app_context.push()
-        
 
         setup_db_tests()
 

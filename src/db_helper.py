@@ -25,9 +25,11 @@ def reset_db():
     sql = text(f"DELETE FROM {TABLE_NAME}")
     db.session.execute(sql)
     db.session.commit()
-    reset_sequence_sql = text(f"ALTER SEQUENCE {TABLE_NAME}_id_seq RESTART WITH 1")
+    reset_sequence_sql = text(
+        f"ALTER SEQUENCE {TABLE_NAME}_id_seq RESTART WITH 1")
     db.session.execute(reset_sequence_sql)
     db.session.commit()
+
 
 def setup_db_tests():
     if table_exists(TABLE_NAME):
@@ -85,7 +87,6 @@ def setup_db():
 
     db.session.execute(sql)
     db.session.commit()
-    
 
     db_setup_items = [
         {"author": "Knuth, Donald E", "title": "The Art of Computer Programming, Volume 1: Fundamental Algorithms",
@@ -107,6 +108,6 @@ def setup_db():
     db.session.commit()
 
 
-if __name__ == "__main__": # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     with app.app_context():
         setup_db()

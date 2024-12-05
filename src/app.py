@@ -106,7 +106,7 @@ def update_reference_route(reference_id):
             reference=reference.reference,
             fields=fields,
             required=["author", "title", "year"],
-    )
+        )
     return redirect("/")
 
 
@@ -135,7 +135,7 @@ def search():
 
 
 # testausta varten oleva reitti
-if test_env: # pragma: no cover
+if test_env:  # pragma: no cover
     @app.route("/reset_db")
     def reset_database():
         reset_db()
