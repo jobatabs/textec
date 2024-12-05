@@ -11,12 +11,11 @@ Add reference
 <form action="/create" method="post">
   {% with errors = get_flashed_messages(category_filter=["error"]) %}
     {% if errors %}
-      <div class="alert alert-danger alert-dismissable fade show" role="alert">
-      <ul>
+      <div class="alert alert-danger alert-dismissable" role="alert">
       {% for message in errors %}
-        <li>{{ message }} <a href="/new">Close</a></li>
+      {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       {% endfor %}
-      </ul>
       </div>
     {% endif %}
   {% endwith %}

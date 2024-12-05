@@ -14,24 +14,22 @@ TexTec
 
 {% with messages = get_flashed_messages(category_filter=["success"]) %}
     {% if messages %}
-    <div class="alert alert-success alert-dismissable fade show" role="alert">
-      <ul>
+    <div class="alert alert-success alert-dismissable" role="alert">
       {% for message in messages %}
-      <li>{{ message }} <a href="/">Close</a></li>
+      {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       {% endfor %}
-      </ul>
       </div>
     {% endif %}
   {% endwith %}
 
 {% with errors = get_flashed_messages(category_filter=["error"]) %}
     {% if errors %}
-    <div class="alert alert-danger alert-dismissable fade show" role="alert">
-      <ul>
+    <div class="alert alert-danger alert-dismissable" role="alert">
       {% for message in errors %}
-      <li>{{ message }} <a href="/">Close</a></li>
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       {% endfor %}
-      </ul>
       </div>
     {% endif %}
   {% endwith %}
