@@ -23,11 +23,12 @@ def create_bibfile(reference_list: list[Reference] = None):
             f.write(",\n".join(attributes) + "\n" + "}\n\n")
 
 
-def generate_tag(ref: Reference, tags):
-    tag = str(ref.reference['title'][:3] + str(ref.reference['year']))
-    if tag in tags:
+def generate_tag(ref: Reference, existing_tags: set) -> str:
+    tag = str("".join(ref.reference['author'].split())[
+              :3] + str(ref.reference['year']))
+    if tag in existing_tags:
         i = 2
-        while f"{tag}-{i}" in tags:
+        while f"{tag}-{i}" in existing_tags:
             i += 1
         tag = f"{tag}-{i}"
     return tag

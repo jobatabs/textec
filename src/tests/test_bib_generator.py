@@ -54,7 +54,7 @@ class TestReferenceRoutes(unittest.TestCase):
             generated_bib = f.read()
 
         expected_bib_file = (
-            '@Article{Tit2021,\n'
+            '@Article{Aut2021,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
             '  year     = "2021",\n'
@@ -84,13 +84,13 @@ class TestReferenceRoutes(unittest.TestCase):
             generated_bib = f.read()
 
         expected_bib_file = (
-            '@Article{Tit2021,\n'
+            '@Article{Aut2021,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
             '  year     = "2021",\n'
             '  journal  = "Journal A"\n'
             '}\n\n'
-            '@Article{Tit2021-2,\n'
+            '@Article{Aut2021-2,\n'
             '  author   = "Author A",\n'
             '  title    = "Title A",\n'
             '  year     = "2021",\n'
