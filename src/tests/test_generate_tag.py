@@ -19,6 +19,8 @@ class TestGenerateTag(unittest.TestCase):
         tags = set()
         tags.add(generate_tag(self.ref, set()))
         self.assertEqual(generate_tag(self.ref, tags), "Tur1937-2")
+        tags.add(generate_tag(self.ref, tags))
+        self.assertEqual(generate_tag(self.ref, tags), "Tur1937-3")
 
     def test_short_tag(self):
         self.assertEqual(generate_tag(self.shortref, set()), "A3")
