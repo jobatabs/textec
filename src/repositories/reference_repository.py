@@ -34,14 +34,14 @@ def delete_reference(_id):
     db.session.commit()
 
 
-def create_reference(references: dict):  # toimiiko???
+def create_reference(references: dict):
     filtered_references = {key: value for key,
                            value in references.items() if value is not None}
 
-    keys = ", ".join(filtered_references.keys())
-    values = ", ".join(f":{key}" for key in filtered_references.keys())
+    prepended_keys = [f":{key}" for key in filtered_references.keys()]
 
-    sql = text(f"INSERT INTO reference_items ({keys}) VALUES ({values})")
+    sql = text(f'INSERT INTO reference_items ({", ".join(filtered_references.keys())}) \
+               VALUES ({", ".join(prepended_keys)})')
 
     db.session.execute(sql, filtered_references)
     db.session.commit()
