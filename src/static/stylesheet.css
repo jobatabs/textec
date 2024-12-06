@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 /*.required::after {
     content: ' *';
     color: firebrick;
@@ -13,3 +14,6 @@ form {
 input {
     margin-left: 20px;
 }
+body {
+    font-family: 'Poppins';
+ }
