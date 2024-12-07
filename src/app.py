@@ -129,8 +129,7 @@ def search():
         references = search_references(query)
         if references:
             return render_template("index.html", references=references)
-        else:
-            return render_template("index.html", error="Sorry, we couldn't find any matches!")
+        return render_template("index.html", error="Sorry, we couldn't find any matches!")
     return redirect("/")
 
 
