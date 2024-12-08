@@ -2,6 +2,7 @@ import unittest
 from app import app
 from db_helper import reset_db, setup_db_tests
 
+
 class TestReferenceRoutes(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -92,7 +93,7 @@ class TestReferenceRoutes(unittest.TestCase):
     def test_edit_reference_form(self):
         response = self.client.get("/edit/1")
         self.assertEqual(response.status_code, 200)
-        
+
         html = response.data
 
         self.assertIn(b'name="author"', html)

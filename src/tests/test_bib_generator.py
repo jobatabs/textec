@@ -129,5 +129,6 @@ class TestReferenceRoutes(unittest.TestCase):
         )
         self.assertEqual(generated_bib, expected_bib_file)
 
+
 if __name__ == "__main__":
     unittest.main()
