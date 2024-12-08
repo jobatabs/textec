@@ -1,7 +1,6 @@
 import unittest
 from app import app
 from db_helper import reset_db, setup_db_tests
-from sqlalchemy.exc import SQLAlchemyError
 
 
 class TestReferenceRoutes(unittest.TestCase):
@@ -83,3 +82,25 @@ class TestReferenceRoutes(unittest.TestCase):
         self.assertIn(b"Allan Collins", response.data)
         self.assertIn(b"Visible Thinking", response.data)
         self.assertIn(b"1991", response.data)
+
+    def test_edit_nonexistent_reference(self):
+        response = self.client.get("/edit/33")
+        self.assertEqual(response.status_code, 302)
+
+        response = self.client.get("/")
+        self.assertIn(b"Reference not found.", response.data)
+
+    def test_edit_reference_form(self):
+        response = self.client.get("/edit/1")
+        self.assertEqual(response.status_code, 200)
+
+        html = response.data
+
+        self.assertIn(b'name="author"', html)
+        self.assertIn(b'name="title"', html)
+        self.assertIn(b'name="year"', html)
+        self.assertIn(b'name="journal"', html)
+        self.assertIn(b'name="pp"', html)
+        self.assertIn(b'name="volume"', html)
+        self.assertIn(b'name="number"', html)
+        self.assertNotIn(b'name="publisher"', html)

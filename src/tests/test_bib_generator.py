@@ -99,6 +99,36 @@ class TestReferenceRoutes(unittest.TestCase):
         )
         self.assertEqual(generated_bib, expected_bib_file)
 
+    def test_generate_bibfile_of_query_results(self):
+        self.client.post(
+            "/create",
+            data={
+                "type": "book",
+                "author": "Author B",
+                "title": "Title B",
+                "year": "2019",
+                "publisher": "Publisher B",
+            },
+            follow_redirects=True,
+        )
+
+        response = self.client.get(
+            "/export_bibtex_file?query=Author A", follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+        with open("references.bib", "r") as f:
+            generated_bib = f.read()
+
+        expected_bib_file = (
+            '@Article{Aut2021,\n'
+            '  author   = "Author A",\n'
+            '  title    = "Title A",\n'
+            '  year     = "2021",\n'
+            '  journal  = "Journal A"\n'
+            '}\n\n'
+        )
+        self.assertEqual(generated_bib, expected_bib_file)
+
 
 if __name__ == "__main__":
     unittest.main()
