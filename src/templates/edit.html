@@ -11,15 +11,22 @@ Edit reference
 <form action="/edit/{{ reference.id }}" method="post">
   {% with errors = get_flashed_messages(category_filter=["error"]) %}
     {% if errors %}
-      <div class="alert alert-danger alert-dismissable fade show" role="alert">
-        <ul>
-        {% for message in errors %}
-          <li>{{ message }} <a href="/edit/{{ reference.id }}">Close</a></li>
-        {% endfor %}
-        </ul>
+      <div class="alert alert-danger alert-dismissable" role="alert" id="error-alert">
+      {% for message in errors %}
+      {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      {% endfor %}
       </div>
     {% endif %}
   {% endwith %}
+  <script>
+    setTimeout(function() {
+      var errorAlert = document.getElementById('error-alert');
+      if (errorAlert) {
+        errorAlert.style.display = 'none';
+      }
+    }, 3000); 
+  </script>
 
   {% for field in fields %}
   {% if field in required %}
@@ -49,5 +56,8 @@ Edit reference
     Save
   </button>
 </form>
+<a href="/">
+  <button>Cancel</button>
+</a>
 
 {% endblock %}

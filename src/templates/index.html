@@ -6,10 +6,16 @@ TexTec
 
 {% block body %}
 
-<h2>Welcome to TexTec!</h2>
+<h2>Welcome to <a href="/">TexTec!</a></h2>
+<form action="/result" method="GET">
+  Search references: <input type="text" name="query">
+  <input type="submit" value=&#128270;>
+</form>
+<br>
+
 {% with messages = get_flashed_messages(category_filter=["success"]) %}
     {% if messages %}
-    <div class="alert alert-success alert-dismissable" role="alert">
+    <div class="alert alert-success alert-dismissable" role="alert" id="success-alert">
       {% for message in messages %}
       {{ message }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -20,7 +26,7 @@ TexTec
 
 {% with errors = get_flashed_messages(category_filter=["error"]) %}
     {% if errors %}
-    <div class="alert alert-danger alert-dismissable" role="alert">
+    <div class="alert alert-danger alert-dismissable" role="alert" id="error-alert">
       {% for message in errors %}
       {{ message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -30,8 +36,21 @@ TexTec
   {% endwith %}
 
 </div>
+<script>
+  setTimeout(function() {
+    var successAlert = document.getElementById('success-alert');
+    var errorAlert = document.getElementById('error-alert');
+    
+    if (successAlert) successAlert.style.display = 'none';
+    if (errorAlert) errorAlert.style.display = 'none';
+  }, 3000); 
+</script>
+
 
 <ul>
+  {% if error %}
+  <p style="font-size:20px">{{ error }}</p>
+  {% endif %}
   {% for reference in references %}
     <li style="display: flex">
       <div>
@@ -39,7 +58,7 @@ TexTec
       </div>
       {% if not reference.done %}
         <form action="/delete/{{ reference.reference.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit">Delete</button>
+          <button type="submit" onclick="return confirm('Are you sure you want to delete {{ reference.reference.title }} by {{ reference.reference.author}} ?')">Delete</button>
         </form>
         <form action="/edit/{{ reference.reference.id }}" method="get" style="margin-left: 10px;">
           <button type="submit">Edit</button>
@@ -52,7 +71,7 @@ TexTec
 <div>
   <form id="reference-form" action="/new" method="post" onsubmit="return validateSelection()">
     <label for="reference-type">Add a new reference:</label>
-    <select id="reference-type" name="type" required>
+    <select id="reference-type" name="type">
       <option value="" disabled selected>Select type</option>
       <option value="misc">Misc</option>
       <option value="article">Article</option>
@@ -72,9 +91,10 @@ TexTec
     return true;
   }
 </script>
+<br>
 
 {% if references %}
-  <a href="/export_bibtex_file">
+  <a href="/export_bibtex_file?query={{ request.args.get('query', '') }}">
     <button>Export BibTeX file</button>
   </a>
 {% endif %}

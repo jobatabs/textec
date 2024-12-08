@@ -3,7 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from db_helper import reset_db
 from repositories.reference_repository import (
     get_references, create_reference, delete_reference, get_title,
-    get_reference_by_id, update_reference
+    get_reference_by_id, update_reference, search_references
 )
 from config import app, test_env
 from util import validate_reference, UserInputError
@@ -38,7 +38,7 @@ def creation():
         validate_reference(reference_dict)
         create_reference(reference_dict)
         flash(
-            f"Successfully added reference {reference_dict['title']}.", 'success')
+            f"Successfully added reference {reference_dict['title']}", 'success')
         return redirect("/")
     except UserInputError as error:
         flash(str(error), 'error')
@@ -53,7 +53,7 @@ def delete(reference_id):
         title = get_title(reference_id)
         if title:
             delete_reference(reference_id)
-            flash(f"Successfully deleted reference {title}.", "success")
+            flash(f"Successfully deleted reference {title}", "success")
         else:
             flash("The reference could not be deleted.", "error")
     except SQLAlchemyError:
@@ -93,25 +93,48 @@ def update_reference_route(reference_id):
         input) != "" else None for input in inputs}
 
     try:
+        validate_reference(updated_data)
         update_reference(reference_id, updated_data)
         flash(
-            f"Successfully updated reference {updated_data['title']}.", "success")
-    except SQLAlchemyError:
-        flash("An error occurred while updating the reference.", "error")
-
+            f"Successfully updated reference {updated_data['title']}", "success")
+    except UserInputError as error:
+        flash(str(error), 'error')
+        reference = get_reference_by_id(reference_id)
+        fields = Reference.get_fields(reference.reference["type"])
+        return render_template(
+            "edit.html",
+            reference=reference.reference,
+            fields=fields,
+            required=["author", "title", "year"],
+        )
     return redirect("/")
 
 
 @app.route("/export_bibtex_file")
 def export_bibtex_file():
-    references = get_references()
+    query = request.args["query"]
+    if query:
+        references = search_references(query)
+    else:
+        references = get_references()
     create_bibfile(references)
 
     return send_file("../references.bib", as_attachment=True, download_name="references.bib")
 
 
+@app.route("/result")
+def search():
+    query = request.args["query"]
+    if query:
+        references = search_references(query)
+        if references:
+            return render_template("index.html", references=references)
+        return render_template("index.html", error="Sorry, we couldn't find any matches!")
+    return redirect("/")
+
+
 # testausta varten oleva reitti
-if test_env:
+if test_env:  # pragma: no cover
     @app.route("/reset_db")
     def reset_database():
         reset_db()

@@ -92,3 +92,37 @@ def update_reference(reference_id, updated_data):
 
     db.session.execute(sql, updated_data)
     db.session.commit()
+
+
+def search_references(query):
+    result = db.session.execute(
+        text("SELECT id, type, author, title, year, journal, volume, "
+             "number, publisher, howpublished, note, pp "
+             "FROM reference_items "
+             "WHERE type ILIKE :query OR author ILIKE :query OR title ILIKE :query "
+             "OR CAST(year AS TEXT) LIKE :query OR journal ILIKE :query "
+             "OR publisher ILIKE :query OR howpublished ILIKE :query OR note ILIKE :query"),
+        {
+            "query": "%" + query + "%"
+        }
+    )
+
+    rows = result.fetchall()
+    searched_references = [
+        Reference(
+            _id=row[0],
+            category=row[1],
+            author=row[2],
+            title=row[3],
+            year=row[4],
+            journal=row[5],
+            volume=row[6],
+            number=row[7],
+            publisher=row[8],
+            howpublished=row[9],
+            note=row[10],
+            pp=row[11],
+        )
+        for row in rows
+    ]
+    return searched_references

@@ -17,8 +17,9 @@ Reference can be deleted from the main page
     Submit New Reference
     Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 1991
     Click Button    Delete
+    Handle Alert
     Page Should Not Contain    Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 1991
-    Deleting A Reference Should Succeed With Message    Successfully deleted reference Cognitive apprenticeship: making thinking visible.  
+    Deleting A Reference Should Succeed With Message    Successfully deleted reference Cognitive apprenticeship: making thinking visible
 
 Server should ignore GET requests to deletion endpoint
     Go To Main Page

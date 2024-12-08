@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 from sqlalchemy.exc import SQLAlchemyError
 from app import app
-from db_helper import reset_db, setup_db
+from db_helper import reset_db, setup_db_tests
 
 
 class TestDeleteReferenceRoutes(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestDeleteReferenceRoutes(unittest.TestCase):
         cls.app_context = app.app_context()
         cls.app_context.push()
 
-        setup_db()
+        setup_db_tests()
 
     @classmethod
     def tearDownClass(cls):
@@ -34,11 +34,11 @@ class TestDeleteReferenceRoutes(unittest.TestCase):
         )
 
     def test_delete_reference_successful(self):
-        response = self.client.post("/delete/2", follow_redirects=True)
+        response = self.client.post("/delete/1", follow_redirects=True)
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            b"Successfully deleted reference Title A.", response.data)
+            b"Successfully deleted reference Title A", response.data)
 
         response = self.client.get("/")
         self.assertNotIn(b"Title A", response.data)
@@ -69,7 +69,7 @@ class TestDeleteReferenceExceptionHandling(unittest.TestCase):
         cls.app_context = app.app_context()
         cls.app_context.push()
 
-        setup_db()
+        setup_db_tests()
 
     @classmethod
     def tearDownClass(cls):

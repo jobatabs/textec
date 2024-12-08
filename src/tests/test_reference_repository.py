@@ -1,6 +1,6 @@
 import unittest
 from app import app
-from db_helper import reset_db, setup_db
+from db_helper import reset_db, setup_db_tests
 
 
 class TestReferenceRoutes(unittest.TestCase):
@@ -10,7 +10,7 @@ class TestReferenceRoutes(unittest.TestCase):
         cls.app_context = app.app_context()
         cls.app_context.push()
 
-        setup_db()
+        setup_db_tests()
 
     @classmethod
     def tearDownClass(cls):
@@ -37,7 +37,7 @@ class TestReferenceRoutes(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Successfully added reference Title A.", response.data)
+        self.assertIn(b"Successfully added reference Title A", response.data)
 
         response = self.client.get("/")
         self.assertIn(b"Author A", response.data)
@@ -90,7 +90,7 @@ class TestReferenceRoutes(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Successfully added reference Title A.", response.data)
+        self.assertIn(b"Successfully added reference Title A", response.data)
 
         response = self.client.get("/")
         self.assertIn(b"Author A", response.data)
@@ -109,7 +109,7 @@ class TestReferenceRoutes(unittest.TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
+        self.assertIn(b"Adding was unsuccessful. Invalid year", response.data)
 
         response = self.client.get("/")
         self.assertNotIn(b"Author A", response.data)
@@ -139,7 +139,7 @@ class TestReferenceRoutes(unittest.TestCase):
             follow_redirects=True
         )
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b"Adding was unsuccessful. Invalid year.", response.data)
+        self.assertIn(b"Adding was unsuccessful. Invalid year", response.data)
 
         response = self.client.get("/")
         self.assertNotIn(b"Author A", response.data)
