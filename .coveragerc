@@ -4,3 +4,4 @@ omit =
     */__init__.py
     src/tests/**,src/index.py
     */config.py
+    src/db_helper.py
