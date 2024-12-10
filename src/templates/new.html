@@ -6,12 +6,13 @@ Add reference
 
 {% block body %}
 
-<div class=title>
+<div class="title">
   <h2>Add a new reference</h2>
 </div>
 
 <br>
 
+<div class="top-row">
 <div class="form">
   <form action="/create" method="post">
     {% with errors = get_flashed_messages(category_filter=["error"]) %}
@@ -58,13 +59,13 @@ Add reference
     {% endif %}
     {% endfor %}
     <input type="hidden" id="type" name="type" value={{type}}>
-    <button type="submit">
-      Save
-    </button>
-    <a href="/">
-      <button>Cancel</button>
-    </a>
-  </form>
+    <div class="button-container">
+      <button type="submit">Save</button>
+      <a href="/"><button type="button">Cancel</button></a>
+    </div>
+  </form> 
 
+
+</div>
 </div>
 {% endblock %}

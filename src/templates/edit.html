@@ -7,7 +7,7 @@ Edit reference
 {% block body %}
 
 
-<div class=title>
+<div class="title">
   <h2>Edit reference</h2>
 </div>
 
@@ -59,13 +59,10 @@ Edit reference
       {% endfor %}
       
       <input type="hidden" id="type" name="type" value="{{ reference.type }}">
-      <button type="submit">
-        Save
-      </button>
-      <a href="/">
-        <button>Cancel</button>
-      </a>
+      <div class="button-container">
+        <button type="submit">Save</button>
+        <a href="/"><button type="button">Cancel</button></a>
+      </div>
     </form>
-  </div>
 </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 /*.required::after {
     content: ' *';
     color: firebrick;
@@ -13,13 +14,26 @@ h1 {
     font-size: 3rem;
     text-align: center;
     margin-top: 15px;
+    padding: 15px;
 }
 h2 {
     font-size: 2rem;
     text-align: left;
-    margin-top: 15px;
+    margin-top: 25px;
+    padding: 15px;
 }
 
+.title a {
+    font-family: "Audiowide";
+    text-decoration: none;
+    color: #7381b1;
+}
+
+.title {
+    margin:20px;
+    margin-bottom: 0px;
+    height: 150px;
+}
 form, ul, button {
     font-size: 1.3rem;
 }
@@ -46,14 +60,23 @@ button {
     gap: 15px;
     justify-content: flex-start;
     margin-bottom: 30px;
+    margin: 20px;
 }
 
 .top-row form, .top-row a {
     margin: 5px;
 }
 
+select {
+    border-radius: 30px; 
+    padding: 10px;
+    font-size: 18px; 
+    border: 1px;
+    width: 150px;
+}
+
 .reference-section{
-    margin: 5px;
+    margin: 20px;
 }
 
 input {
@@ -128,4 +151,45 @@ li div:last-child {
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     background-color: var(--primary-color);
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start; 
+  }
+
+button {
+    border-radius: 30px;
+    background-color: #8a9bd8;
+    border: 1px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+
+  input[type="text"] {
+    border-radius: 30px; 
+    padding: 10px; 
+    border: 1px;
+    font-size: 20px; 
+    width: 300px; 
+}
+
+input[type="submit"] {
+    border-radius: 30px; 
+    padding: 10px 20px; 
+    background-color: #F8F8FF; 
+    border: 1px;
+    cursor: pointer; 
+    font-size: 18px;
+    transition: background-color 0.3s; 
+}
+
+input[type="submit"]:hover {
+    background-color: #8a9bd8;
 }
