@@ -25,7 +25,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 Sovellus käyttää PostgreSQL-tietokantaa, ja sen käynnistämiseksi tarvitaan `.env`-tiedosto, joka sisältää seuraavat ympäristömuuttujat:
 
 ```env
-DATABASE_URL=postgresql://valinnainen_käyttäjä:valinnainen_salasana@localhost:haluamasiporttinumero/tietokannan_nimi
+DATABASE_URL=postgresql://käyttäjä:salasana@localhost:porttinumero/tietokannan_nimi
 TEST_ENV=true
 SECRET_KEY=satunnainen_merkkijono
 ```
