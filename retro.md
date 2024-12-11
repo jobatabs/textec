@@ -26,7 +26,7 @@ start
 - parempi ajankäyttö taskien tekemisessä ja suunittelussa
 
 stop
-- 
+- ei liikaa toiminnallisuuksia yhteen sprinttiin
 
 continue
 - jatketaan edelleen hyvää työtä ja kommunikointia
@@ -40,4 +40,4 @@ less of
 
 kaksi kehitystoimenpidettä:
 1. Integroidaan uudet ominaisuudet main-haaraan ajoissa eikä juuri ennen asiakastapaamista. 
-2.
+2. Arvioidaan user storien estimaatit paremmin eikä oteta liikaa toiminnallisuuksia yhteen sprinttiin
