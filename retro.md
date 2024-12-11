@@ -20,3 +20,24 @@ kaksi kehitystoimenpidettä:
 2. Varmistetaan, että testit toimivat paikallisesti ennen pushausta. 
 
 
+sprintti 3 retrospektiivi:
+
+start
+- parempi ajankäyttö taskien tekemisessä ja suunittelussa
+
+stop
+- 
+
+continue
+- jatketaan edelleen hyvää työtä ja kommunikointia
+- hyvä yhteistyö taskien tekemisessä
+
+more of
+- varmistetaan, että kaikki toimii ja vanhoja bugeja ei tule esiin kun pushataan githubiin
+
+less of 
+- vähemmän turhaa työtä ja epämääräisyyttä 
+
+kaksi kehitystoimenpidettä:
+1. 
+2.
