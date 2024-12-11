@@ -53,6 +53,12 @@ Ollakseen valmis, user storyn toteutuksen tulee olla
 
 # Hyväksymiskriteerit
 
+Sprintti 3:
+
 [Käyttäjä voi lisätä 3 eri tyyppistä lähdettä](https://github.com/jobatabs/textec/blob/main/src/story_tests/add_reference.robot)
 
 [Käyttäjä voi muokata lisättyä lähdettä](https://github.com/jobatabs/textec/blob/main/src/story_tests/edit_reference.robot)
+
+Sprintti 4:
+
+[Käyttäjä voi hakea lähteitä](https://github.com/jobatabs/textec/blob/main/src/story_tests/search_reference.robot)
