@@ -19,6 +19,7 @@ A BibTeX file can be downloaded
     Set Year  1991
     Submit New Reference
     Page Should Contain  Allan Collins and John Seely Brown and Ann Holum, Cognitive apprenticeship: making thinking visible, American Educator, 1991
+    Wait Until Page Contains  Export BibTeX file
     Click Button    Export BibTeX file
     ${bibfile}  Get File    ./references.bib
     Should Contain    ${bibfile}    ${COGNITIVE_APPRENTICESHIP_BIBTEX}

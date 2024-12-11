@@ -6,11 +6,9 @@ TexTec
 
 {% block body %}
 
-<h2>Welcome to <a href="/">TexTec!</a></h2>
-<form action="/result" method="GET">
-  Search references: <input type="text" name="query">
-  <input type="submit" value=&#128270;>
-</form>
+<div class = title>
+<h1>Welcome to <a href="/">TexTec!</a></h1>
+</div>
 <br>
 
 {% with messages = get_flashed_messages(category_filter=["success"]) %}
@@ -41,45 +39,73 @@ TexTec
     var successAlert = document.getElementById('success-alert');
     var errorAlert = document.getElementById('error-alert');
     
-    if (successAlert) successAlert.style.display = 'none';
-    if (errorAlert) errorAlert.style.display = 'none';
-  }, 3000); 
+    if (successAlert) {
+      successAlert.classList.add('hidden');
+      setTimeout(function() {
+        successAlert.style.display = 'none';
+      }, 1000); 
+    }
+
+    if (errorAlert) {
+      errorAlert.classList.add('hidden');
+      setTimeout(function() {
+        errorAlert.style.display = 'none';
+      }, 1000); 
+    }
+  }, 3000);
 </script>
 
-
-<ul>
-  {% if error %}
-  <p style="font-size:20px">{{ error }}</p>
-  {% endif %}
-  {% for reference in references %}
-    <li style="display: flex">
-      <div>
-        {{ reference }} 
-      </div>
-      {% if not reference.done %}
-        <form action="/delete/{{ reference.reference.id }}" method="post" style="margin-left: 10px;">
-          <button type="submit" onclick="return confirm('Are you sure you want to delete {{ reference.reference.title }} by {{ reference.reference.author}} ?')">Delete</button>
-        </form>
-        <form action="/edit/{{ reference.reference.id }}" method="get" style="margin-left: 10px;">
-          <button type="submit">Edit</button>
-        </form>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
-
-<div>
-  <form id="reference-form" action="/new" method="post" onsubmit="return validateSelection()">
-    <label for="reference-type">Add a new reference:</label>
-    <select id="reference-type" name="type">
-      <option value="" disabled selected>Select type</option>
-      <option value="misc">Misc</option>
-      <option value="article">Article</option>
-      <option value="book">Book</option>
-    </select>
-    <button type="submit">Go</button>
+<div class="top-row">
+  <form id="form" action="/new" method="post" onsubmit="return validateSelection()">
+      <label for="reference-type">Add a new reference:</label>
+      <select id="reference-type" name="type">
+          <option value="" disabled selected>Select type</option>
+          <option value="article">Article</option>
+          <option value="book">Book</option>
+          <option value="misc">Misc</option>
+      </select>
+      <button type="submit">Go</button>
   </form>
+  {% if references %}
+  <a href="/export_bibtex_file?query={{ request.args.get('query', '') }}">
+    <button>Export BibTeX file</button>
+  </a>
+  {% endif %}
 </div>
+
+<div class="reference-section">
+  <div>
+    <form action="/result" method="GET">
+      Search references: <input type="text" name="query">
+      <input type="submit" value=&#128270;>
+    </form>
+    </div>
+  </form>
+
+  <ul>
+    {% if error %}
+    <p style="font-size:20px">{{ error }}</p>
+    {% endif %}
+    {% for reference in references %}
+        <li style="display: flex; align-items: center; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 5px;">
+                {% if not reference.done %}
+                <form action="/delete/{{ reference.reference.id }}" method="post">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete {{ reference.reference.title }} by {{ reference.reference.author}} ?')">Delete</button>
+                </form>
+                <form action="/edit/{{ reference.reference.id }}" method="get">
+                    <button type="submit">Edit</button>
+                </form>
+                {% endif %}
+            </div>
+            <div style="margin-left: 5px;">
+                {{ reference }}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+</div>
+
 
 <script>
   function validateSelection() {
@@ -92,11 +118,5 @@ TexTec
   }
 </script>
 <br>
-
-{% if references %}
-  <a href="/export_bibtex_file?query={{ request.args.get('query', '') }}">
-    <button>Export BibTeX file</button>
-  </a>
-{% endif %}
 
 {% endblock %}

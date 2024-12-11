@@ -9,6 +9,7 @@ ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
 ${BROWSER}    chrome
 ${HEADLESS}   false
+${BUTTON_LOCATOR}    xpath=//button[text()='Save']
 
 *** Keywords ***
 Open And Configure Browser
@@ -86,9 +87,11 @@ Set Pages Pertinent
     Input Text  pp  ${pp}
 
 Submit New Reference
+    Scroll Element Into View    ${BUTTON_LOCATOR}
     Click Button  Save
 
 Save Edited Reference
+    Scroll Element Into View    ${BUTTON_LOCATOR}
     Click Button    Save
 
 Main Page Should Be Open

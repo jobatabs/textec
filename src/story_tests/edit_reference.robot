@@ -18,6 +18,7 @@ Editing an added reference
     Set Number  2
     Submit New Reference
     Go To Main Page
+    Wait Until Element Is Not Visible    id=success-alert    timeout=10s
     Click Button    Edit
     Set Author  Rune Klevjer
     Set Title  In defense of cutscenes

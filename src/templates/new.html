@@ -6,46 +6,66 @@ Add reference
 
 {% block body %}
 
-<h2>Add a new reference</h2>
+<div class="title">
+  <h2>Add a new reference</h2>
+</div>
 
-<form action="/create" method="post">
-  {% with errors = get_flashed_messages(category_filter=["error"]) %}
-    {% if errors %}
-      <div class="alert alert-danger alert-dismissable" role="alert" id="error-alert">
-      {% for message in errors %}
-      {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      {% endfor %}
-      </div>
+<br>
+
+<div class="top-row">
+<div class="form">
+  <form action="/create" method="post">
+    {% with errors = get_flashed_messages(category_filter=["error"]) %}
+      {% if errors %}
+        <div class="alert alert-danger alert-dismissable" role="alert" id="error-alert">
+        {% for message in errors %}
+        {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <script>
+      setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        var errorAlert = document.getElementById('error-alert');
+        
+        if (successAlert) {
+          successAlert.classList.add('hidden');
+          setTimeout(function() {
+            successAlert.style.display = 'none';
+          }, 1000); 
+        }
+    
+        if (errorAlert) {
+          errorAlert.classList.add('hidden');
+          setTimeout(function() {
+            errorAlert.style.display = 'none';
+          }, 1000); 
+        }
+      }, 5000);
+    </script>
+
+    {% for field in fields %}
+    {% if field in required %}
+    <label class="required" for="field">{{ field }}:</label><br />
+    <input type="text" name={{field}} id={{field}} required>
+    <br />
+    {% else %}
+    <label class="optional" for="field">{{ field }}:</label><br />
+    <input type="text" name={{field}} id={{field}}>
+    <br />
     {% endif %}
-  {% endwith %}
-  <script>
-    setTimeout(function() {
-      var errorAlert = document.getElementById('error-alert');
-      if (errorAlert) {
-        errorAlert.style.display = 'none';
-      }
-    }, 3000); 
-  </script>
+    {% endfor %}
+    <input type="hidden" id="type" name="type" value={{type}}>
+    <div class="button-container">
+      <button type="submit">Save</button>
+      <a href="/"><button type="button">Cancel</button></a>
+    </div>
+  </form> 
 
-  {% for field in fields %}
-  {% if field in required %}
-  <label class="required" for="field">{{ field }}:</label><br />
-  <input type="text" name={{field}} id={{field}} required>
-  <br />
-  {% else %}
-  <label class="optional" for="field">{{ field }}:</label><br />
-  <input type="text" name={{field}} id={{field}}>
-  <br />
-  {% endif %}
-  {% endfor %}
-  <input type="hidden" id="type" name="type" value={{type}}>
-  <button type="submit">
-    Save
-  </button>
-</form>
-<a href="/">
-  <button>Cancel</button>
-</a>
 
+</div>
+</div>
 {% endblock %}

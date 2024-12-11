@@ -15,6 +15,7 @@ Search Finds Relevant References
     Set Journal  American Educator
     Set Year  1991
     Submit New Reference
+    Wait Until Element Is Not Visible    id=success-alert    timeout=10s
     Click Dropdown  type
     Select Type  type  book
     Click Button  Go
@@ -62,6 +63,8 @@ Search Finds References By Partial Input
     Set Year  2022
     Submit New Reference
 
+    Wait Until Element Is Not Visible    id=success-alert    timeout=10s
+
     Click Dropdown  type
     Select Type  type  article
     Click Button  Go
@@ -70,6 +73,8 @@ Search Finds References By Partial Input
     Set Journal  Journal Two
     Set Year  2022
     Submit New Reference
+
+    Wait Until Element Is Not Visible    id=success-alert    timeout=10s
 
     Click Dropdown  type
     Select Type  type  article
