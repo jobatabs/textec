@@ -91,6 +91,7 @@ Submit New Reference
     Click Button  Save
 
 Save Edited Reference
+    Scroll Element Into View    ${BUTTON_LOCATOR}
     Click Button    Save
 
 Main Page Should Be Open
