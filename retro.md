@@ -39,5 +39,5 @@ less of
 - vähemmän turhaa työtä ja epämääräisyyttä 
 
 kaksi kehitystoimenpidettä:
-1. 
+1. Integroidaan uudet ominaisuudet main-haaraan ajoissa eikä juuri ennen asiakastapaamista. 
 2.
