@@ -12,6 +12,7 @@ https://ohjelmistotuotanto-hy.github.io/speksi/
 - [CI](https://github.com/jobatabs/textec/actions)
 - [Sprint backlog](https://docs.google.com/spreadsheets/d/1WLDSrKw92wT9KG-hiETiYCesm8fhF46Eo0MnLOWUtcI/edit?gid=0#gid=0)
 - [Testikattavuus](https://codecov.io/gh/jobatabs/textec)
+- [Loppuraportti](https://helsinkifi-my.sharepoint.com/:w:/g/personal/csimona_ad_helsinki_fi/EaFO0SQjd4lMtVjDzrcw0fUB3lG0fEgkyMIcnSufy9BHAg?e=dNJ7Rm)
 
 # Asennusohjeet
 
