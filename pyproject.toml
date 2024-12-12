@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "textec"
-version = "0.2.0"
+version = "0.3.0"
 description = ""
 authors = ["Jonatan Noponen <2370315+jobatabs@users.noreply.github.com>", "Juho Kemppainen <juho.hm.kemppainen@helsinki.fi>", "Lenni Martikainen <lenni.martikainen@helsinki.fi>", "Salla Korhonen <73477364+sakorh@users.noreply.github.com>", "Simona Callegari <simona.callegari@helsinki.fi>"]
 readme = "README.md"
